@@ -105,9 +105,9 @@ export default function CalendarPage() {
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
                 >
                   <option value="">Pilih kategori</option>
-                  <option value="penting" className="text-red-600">Penting</option>
-                  <option value="sedang" className="text-yellow-600">Sedang</option>
-                  <option value="biasa" className="text-green-600">Biasa</option>
+                  <option value="penting" className="text-red-600"> 🔴 Penting</option>
+                  <option value="sedang" className="text-yellow-600"> 🟡 Sedang</option>
+                  <option value="biasa" className="text-green-600"> 🟢 Biasa</option>
                 </select>
               </div>
             </form>

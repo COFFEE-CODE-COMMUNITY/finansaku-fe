@@ -5,7 +5,6 @@ import {NavLink} from 'react-router-dom'
 import Faq from './components/faq'
 import Footer from './components/footer'
 import Features from './components/features'
-import Login from '../form/login'
 import ArticlePage from './components/articlePage'
 
 function LandingPage(){

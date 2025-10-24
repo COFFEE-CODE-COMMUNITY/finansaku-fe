@@ -15,7 +15,6 @@ import SignUp from '../src/pages/form/signUp.jsx'
 import ReadArticle from './pages/landingPage/readArticle.jsx';
 import { UserProvider } from './pages/context/userProvider.jsx';
 
-// Contoh fake auth (nanti ganti dengan state / context)
 const isLoggedIn = () => {
   console.log( localStorage.getItem("token"))
   return localStorage.getItem("token") !== null; // misal token disimpan di localStorage
@@ -34,18 +33,6 @@ function App() {
         {/* <Route path='/ForgotPassword' element={<ForgotPass/>}/> */}
         <Route path='/SignUp' element={<SignUp/>}/>  
         <Route path="/readArticle" element={<ReadArticle />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        
-        {/* <Route path="/" element={<Navigate to="/dashboard" />} />
-        <Route path="/article" element={<Article />} />
-        <Route path="/landing" element={<LandingPage />} /> */}
-
-        {/* <Route element={<MainLayout />}>
-          <Route path="/dashboard" element={<DefaultPage />} />
-          <Route path="/survey" element={<Survey />} />
-          <Route path="/calendar" element={<Calendar />} />
-        </Route> */}
-
 
 
         {/* Protected Pages */}

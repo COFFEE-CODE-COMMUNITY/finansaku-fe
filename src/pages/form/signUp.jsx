@@ -102,19 +102,19 @@ function Register() {
                     <div className="w-[410px] flex flex-col gap-2.5 p-4">
                         <div className="flex flex-col text-left">
                             <label className=" font-semibold text-gray-800" htmlFor="userName">Username:</label>
-                            <input type="text" onChange={(e) => setUserName(e.target.value)} id="userName" value={userName} placeholder="Gunakan awalan huruf kapital dan tanpa spasi!" className="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                            <input type="text" onChange={(e) => setUserName(e.target.value)} id="userName" value={userName} placeholder="Gunakan awalan huruf kapital dan tanpa spasi!" className={`border ${ errors.userName ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
                             {errors.userName && (<p className="text-red-500 text-xs">{errors.userName}</p>)}
                         </div>
 
                         {/* <div className="flex flex-col text-left">
                             <label className="font-semibold text-gray-800" htmlFor="name">Name:</label>
-                            <input type="text" onChange={(e) => (setName(e.target.value))} value={name} id="name" placeholder="Chen Hao" className="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                            <input type="text" onChange={(e) => (setName(e.target.value))} value={name} id="name" placeholder="Chen Hao" className={`border ${ errors.name ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
                             {errors.name && (<p className="text-red-500 text-xs">{errors.name}</p>)}
                         </div> */}
 
                         <div className="flex flex-col text-left">
                             <label className="font-semibold text-gray-800" htmlFor="userEmail">Email:</label>
-                            <input type="email" onChange={(e) => (setEmail(e.target.value))} value={email} id="userEmail" placeholder=" Nama@gmail.com" className="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                            <input type="email" onChange={(e) => (setEmail(e.target.value))} value={email} id="userEmail" placeholder=" Nama@gmail.com" className={`border ${ errors.email ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
                             {errors.email && (<p className="text-red-500 text-xs">{errors.email}</p>)}
                         </div>
 
@@ -129,7 +129,7 @@ function Register() {
                                     {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                                 </button>
                             </div>
-                            {errors.password && (<p className="text-red-500">{errors.password}</p>)}
+                            {errors.password && (<p className="text-red-500 text-xs">{errors.password}</p>)}
                         </div>
 
                     </div>
@@ -143,7 +143,7 @@ function Register() {
                             <NavLink><p className="text-[#4567B0] text-sm hover:underline">Kebijakan Privasi & Syarat Layanan</p></NavLink>
                         </div>
 
-                    <button type="submit" className={` text-white font-semibold py-2 rounded-full transition ${loading ? "bg-[#1B263B]" : "bg-[#22304a] hover:bg-[#15224A]"}`} >
+                    <button type="submit" className={` text-white font-semibold py-2 m-2.5 rounded-full transition ${loading ? "bg-[#1B263B]" : "bg-[#22304a] hover:bg-[#15224A]"}`} >
                         {loading ? "Sign Up..." : "Sign Up"}
                     </button>
 
@@ -154,11 +154,11 @@ function Register() {
                     </div>
 
                     <div className="flex justify-center items-center">
-                        <button className="w-24 flex items-center justify-center  hover:bg-gray-100 font-semibold py-2 rounded-lg text-lg transition"><FcGoogle size={30} /></button>
+                        <button className="w-24 flex items-center justify-center  hover:bg-gray-100 font-semibold py-2 rounded-lg text-lg transition m-2.5"><FcGoogle size={30} /></button>
                     </div>
 
                     <p className="text-center text-gray-700 text-sm">Sudah punya akun?
-                        <NavLink to={"/Login"} className="text-[#4567B0] hover:underline">  Daftar di sini</NavLink>
+                        <NavLink to={"/Login"} className="text-[#4567B0] hover:underline">  Masuk di sini</NavLink>
                     </p>
                 </form>
             </div>

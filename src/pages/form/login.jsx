@@ -42,8 +42,6 @@ function Login() {
 
         if (!password) {
             newErrors.password = "Password wajib diisi";
-        } else if (password.length < 8) {
-            newErrors.password = "Password minimal 8 karakter";
         }
 
         setErrors(newErrors);

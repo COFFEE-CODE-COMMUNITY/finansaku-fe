@@ -6,8 +6,8 @@ function Faq(){
     const question = [
         {id : 1, title : "Bagaimana cara memulai finansaku", answer : "Mulai dengan mengisi survey singkat tentang pengeluaran dan  preferensi keuangan anda. Data ini akan digunakan untuk menyesuaikan rekomendasi budgeting"},
         {id : 2, title : "Apa saja yang ditampilkan di dashboard?", answer : "Mulai dengan mengisi survey singkat tentang pengeluaran dan  preferensi keuangan anda. Data ini akan digunakan untuk menyesuaikan rekomendasi budgeting"},
-        {id : 3, title : "Bisakah saya menyesuaikan anggaran  yang  disarankan? cara memulai finansaku", answer : "Mulai dengan mengisi survey singkat tentang pengeluaran dan  preferensi keuangan anda. Data ini akan digunakan untuk menyesuaikan rekomendasi budgeting"},
-        {id : 4, title : "Apakah data keuangan saya aman?", answer : "Mulai dengan mengisi survey singkat tentang pengeluaran dan  preferensi keuangan anda. Data ini akan digunakan untuk menyesuaikan rekomendasi budgeting"}
+        {id : 3, title : "Bisakah saya menyesuaikan anggaran  yang  disarankan?", answer : "Saat ini, Finansaku belum menyediakan fitur untuk menyesuaikan anggaran yang disarankan. Semua alokasi yang ditampilkan masih bersifat default untuk kebutuhan pokok berdasarkan hasil survey."},
+        {id : 4, title : "Apakah data keuangan saya aman?", answer : "Ya, Finansaku menjaga keamanan data keuangan pengguna dengan standar privasi yang ketat. Semua informasi tersimpan secara aman dan hanya bisa diakses oleh pengguna yang bersangkutan."}
     ]
 
     const toggleOPen = (id) => {
@@ -23,7 +23,7 @@ function Faq(){
 
                 <div className='flex flex-col gap-y-5 w-[54.4%] items-center justify-center'>
                     {question.map((informasi )=> ( 
-                        <div key={informasi.id} className= 'bg-white shadow-md  mb-6 hover:shadow-xl transition-shadow duration-300 w-[80%]'>
+                        <div key={informasi.id} className= 'bg-white shadow-md rounded-2xl  mb-6 hover:shadow-xl transition-shadow duration-300 w-[80%]'>
                             <button onClick={() => toggleOPen(informasi.id)} className='w-full flex justify-between items-center p-5 text-left'>
                                 <h2 className='text-xl font-bold text-black'>{informasi.title}</h2>
                                 <div className={`bg-[#778DA9] text-white p-2 rounded-full transform transition-transform duration-300 ${open === informasi.id ? "rotate-180" : ""}`}>
@@ -32,7 +32,7 @@ function Faq(){
                             </button>
 
                             <div className={`px-5 overflow-hidden transition-all duration-500 ease-in-out ${open === informasi.id ? "max-h-40 py-3" : "max-h-0"}`}>
-                                <p className='text-black text-lg leading-relaxed pt-3'>{informasi.answer}</p>
+                                <p className='text-black text-lg'>{informasi.answer}</p>
                             </div>
                         </div>
                     ))}
