@@ -3,3 +3,48 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Ubah tampilan react-calendar agar serasi */
+.react-calendar {
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
+.react-calendar__tile {
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+}
+
+.react-calendar__tile--active {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button {
+  color: #111;
+  font-weight: 600;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none !important;
+  cursor: default !important;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Hilangkan scrollbar tapi tetap bisa scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE dan Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+

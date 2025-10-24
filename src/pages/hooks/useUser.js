@@ -1,0 +1,6 @@
+import { useContext } from "react";
+import { UserContext } from "../context/userContext.jsx";
+
+export const useUser = () => useContext(UserContext)
+
+// mempermudah mengambil data dari userContext

@@ -5,9 +5,7 @@ import Finansaku from "../../../assets/finansaku-logo.svg";
 function Footer() {
   return (
     <footer className="text-white px-20 py-10">
-      {/* Bagian utama */}
       <div className="w-[1200px] mx-auto flex flex-wrap justify-between gap-12 border-b border-gray-700 pb-10">
-        {/* Logo dan deskripsi */}
         <div className="flex flex-col items-start min-w-[280px] overflow-hidden">
           <div className="flex items-center justify-center w-[220px] h-[120px]">
             <img
@@ -18,7 +16,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Navigasi */}
         <div className="min-w-[150px]">
           <h2 className="font-semibold text-lg mb-3">Navigasi</h2>
           <ul className="space-y-2 text-gray-300 list-disc">
@@ -45,7 +42,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Informasi */}
         <div className="min-w-[150px]">
           <h2 className="font-semibold text-lg mb-3">Informasi</h2>
           <ul className="space-y-2 text-gray-300 list-disc">
@@ -54,7 +50,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Kebijakan */}
         <div className="min-w-[150px]">
           <h2 className="font-semibold text-lg mb-3">Kebijakan</h2>
           <ul className="space-y-2 text-gray-300">
@@ -71,7 +66,6 @@ function Footer() {
         </div>
       </div>
 
-      {/* Bagian bawah */}
       <div className="pt-6 text-center text-sm text-white">
         <p className="font-bold">© 2025 Finansaku Semua hak dilindungi.</p>
       </div>
