@@ -14,6 +14,7 @@ import Calendar from './pages/app/calendar.jsx'
 import LandingPage from './pages/landing/landingPage.jsx'
 import MainLayout from './layout/mainLayout.jsx'
 import ArticlePage from './pages/landing/articlePage.jsx'
+import WaitPage from './components/waitPage.jsx'
 
 const isLoggedIn = () => {
   console.log( localStorage.getItem("token"))
@@ -31,6 +32,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='/SignUp' element={<SignUP/>}/> 
             <Route path="/ReadArticle" element={<ReadArticle />} />
             <Route path="/Article" element={<ArticlePage />} />
+            <Route path="/WaitPage" element={<WaitPage />} />
             {/* <Route path='/ForgotPassword' element={<ForgotPass/>}/> BELOM DIAKTIFKAN LAGI*/}
 
             <Route element={isLoggedIn() ? <MainLayout /> : <Navigate to="/login" />}>

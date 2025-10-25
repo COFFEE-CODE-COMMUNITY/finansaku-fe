@@ -1,8 +1,8 @@
-import config from "../config/script"
+// import config from "../config/script"
 
 // post login
 export const login = async ({email, password}) => {
-    return fetch(config.BASE_URL_LOGIN, {
+    return fetch("http://localhost:8081/api/v1/auth/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -16,9 +16,9 @@ export const login = async ({email, password}) => {
 }
 
 // post sign up
-export const SignUp = async({username, email, password}) =>{
-    console.log(`${username}-${email}-${password}`)
-    return fetch(config.BASE_URL_REGISTER, {
+export const SignUp = async({username, name, email, password}) =>{
+    console.log(`${username}-${email}-${name}-${password}`)
+    return fetch("http://localhost:8081/api/v1/auth/register", {
         method : 'POST',
         headers: {
             'Content-Type' : 'application/json',
@@ -31,6 +31,22 @@ export const SignUp = async({username, email, password}) =>{
         })
     })
 }
+// forgot pass
+export const ForgotPass = async({email}) =>{
+    console.log(`${email}`)
+    return fetch("https://charolette-unmasterful-unpliably.ngrok-free.dev", {
+        method : 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json'
+        }, 
+        body : JSON.stringify({
+            email, 
+        })
+    })
+}
+
+
 
 // Post Survey
 // export const submitSurvey = async (domisili, salary, status) => {
@@ -48,20 +64,15 @@ export const SignUp = async({username, email, password}) =>{
 //         })
 // };
 
-// post change password
-// export const changePass = async({userName, name, email, password, status}) =>{
-//     return fetch(`${config.BASE_URL}/auth/register`, {
-//         method : 'POST',
-//         headers: {
-//             'Content-Type' : 'application/json',
-//             'Accept' : 'application/json'
-//         }, 
-//         body : JSON.stringify({
-//             userName, 
-//             name, 
-//             email, 
-//             password, 
-//             status
-//         })
-//     })
-// }
+//post change password
+export const changePass = async({password, token}) =>{
+    return fetch("https://charolette-unmasterful-unpliably.ngrok-free.dev", {
+        method : 'PATCH',
+        headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+            "Authorization": `Bearer ${token}`
+        }, 
+        body : JSON.stringify({password})
+    })
+}

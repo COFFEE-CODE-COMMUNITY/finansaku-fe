@@ -6,6 +6,7 @@ import Faq from '../../components/faq'
 import Footer from '../../components/footer'
 import Features from '../../components/features'
 import ArticlePage from '../../components/article'
+import PasswordChange from '../auth/passChangesPage'
 
 function LandingPage(){
 
@@ -15,6 +16,7 @@ function LandingPage(){
     return(
         <>
             <Navbar/>
+            <PasswordChange/>
             <div id='home' className='flex justify-center items-center gap-24  h-screen'>
 
                 <div className='text-white flex flex-col justify-center items-center h-full w-full'>
@@ -37,6 +39,7 @@ function LandingPage(){
             <Features/>
             <Faq/>
             <ArticlePage/>
+            <PasswordChange/>
             <Footer/>
 
         </>

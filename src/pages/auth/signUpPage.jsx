@@ -18,7 +18,7 @@ function Register() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false)
     const [userName, setUserName] = useState("") 
-    // const [name, setName] = useState("")
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState({}); // for errors
@@ -37,9 +37,9 @@ function Register() {
             newErrors.userName = "Tidak boleh menggunakan spasi!"
         }
 
-        // if (!name){
-        //     newErrors.name = "Name Wajib Diisi"
-        // }
+        if (!name){
+            newErrors.name = "Name Wajib Diisi"
+        }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -68,7 +68,7 @@ function Register() {
         setLoading(true)
         try {
             await sleep(1000)
-            const response = await SignUp({username: userName, email, password})
+            const response = await SignUp({username: userName, name, email, password})
             const body = await response.json()
             console.log(body)
 
@@ -101,18 +101,18 @@ function Register() {
                 </div>
 
                 <form className="flex flex-col w-3/4 max-w-sm" onSubmit={handleSubmit}>
-                    <div className="w-[410px] flex flex-col gap-2.5 p-4">
+                    <div className=" flex flex-col gap-2.5 p-4">
                         <div className="flex flex-col text-left">
                             <label className=" font-semibold text-gray-800" htmlFor="userName">Username:</label>
                             <input type="text" onChange={(e) => setUserName(e.target.value)} id="userName" value={userName} placeholder="Gunakan awalan huruf kapital dan tanpa spasi!" className={`border ${ errors.userName ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
                             {errors.userName && (<p className="text-red-500 text-xs">{errors.userName}</p>)}
                         </div>
 
-                        {/* <div className="flex flex-col text-left">
+                        <div className="flex flex-col text-left">
                             <label className="font-semibold text-gray-800" htmlFor="name">Name:</label>
                             <input type="text" onChange={(e) => (setName(e.target.value))} value={name} id="name" placeholder="Chen Hao" className={`border ${ errors.name ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
                             {errors.name && (<p className="text-red-500 text-xs">{errors.name}</p>)}
-                        </div> */}
+                        </div>
 
                         <div className="flex flex-col text-left">
                             <label className="font-semibold text-gray-800" htmlFor="userEmail">Email:</label>
