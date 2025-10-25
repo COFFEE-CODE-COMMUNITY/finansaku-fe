@@ -1,10 +1,10 @@
 import React from "react";
-import ImgArticle from '../../../assets/article/img-article.jpg'
-import ImgArticle1 from '../../../assets/article/img-article1.svg'
-import ImgArticle2 from '../../../assets/article/img-article2.svg'
-import ImgArticle3 from '../../../assets/article/img-article3.svg'
-import ImgArticle4 from '../../../assets/article/img-article4.svg'
-import ImgArticle5 from '../../../assets/article/img-article5.svg'
+import ImgArticle from '../assets/article/img-article.jpg'
+import ImgArticle1 from '../assets/article/img-article1.svg'
+import ImgArticle2 from '../assets/article/img-article2.svg'
+import ImgArticle3 from '../assets/article/img-article3.svg'
+import ImgArticle4 from '../assets/article/img-article4.svg'
+import ImgArticle5 from '../assets/article/img-article5.svg'
 
 export const articles = [
   {

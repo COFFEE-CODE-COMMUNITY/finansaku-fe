@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import IconImage from '../../../assets/icon-article.svg'
+import IconImage from '../assets/icon-article.svg'
 
 function ArticlePage() {
     return (

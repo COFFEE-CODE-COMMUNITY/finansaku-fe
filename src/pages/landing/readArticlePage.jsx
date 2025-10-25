@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
-import {articles} from '../landingPage/article/articleData'
+import {articles} from '../../data/articleData'
 
 function ReadArticle(){
     const location = useLocation();

@@ -1,7 +1,7 @@
 import React from "react";
 import { Bell } from "react-feather";
 import {NavLink, useLocation} from 'react-router-dom'
-import ImagePerson from '../../../assets/imagePersonRounded.svg'
+import ImagePerson from '../assets/imagePersonRounded.svg'
 
 function Topbar() {
   const location = useLocation();
@@ -13,7 +13,7 @@ function Topbar() {
     "/clock": "History",
   };
 
-  const currentTitle = titles[location.pathname] || "Halaman";
+  const currentTitle = titles[location.pathname] || "DashBoard";
   return (
     <div className="flex justify-between items-center w-[80%] h-[15%] px-12 py-4 absolute right-0 z-1 bg-white/0 text-black">
         <div>

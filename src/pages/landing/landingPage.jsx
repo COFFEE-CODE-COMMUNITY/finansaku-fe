@@ -1,13 +1,17 @@
-import React from 'react'
-import Navbar from './components/navbar'
+import React, {useEffect} from 'react'
+import Navbar from '../../components/navbar' 
 import LandingPageIcon from '../../assets/landingPage.svg'
 import {NavLink} from 'react-router-dom'
-import Faq from './components/faq'
-import Footer from './components/footer'
-import Features from './components/features'
-import ArticlePage from './components/articlePage'
+import Faq from '../../components/faq'
+import Footer from '../../components/footer'
+import Features from '../../components/features'
+import ArticlePage from '../../components/article'
 
 function LandingPage(){
+
+    useEffect(() => {
+            window.scrollTo(0,0)
+        }, [])
     return(
         <>
             <Navbar/>

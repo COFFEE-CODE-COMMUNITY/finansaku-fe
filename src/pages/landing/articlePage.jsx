@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { NavLink } from "react-router-dom";
-import HeaderArticle from "./components/header-article";
-import Footer from "./components/footer";
+import HeaderArticle from "../../components/headerArticle";
+import Footer from "../../components/footer";
 import ImgArticle from '../../assets/article/img-article.jpg'
 import ImgArticle1 from '../../assets/article/img-article1.svg'
 import ImgArticle2 from '../../assets/article/img-article2.svg'

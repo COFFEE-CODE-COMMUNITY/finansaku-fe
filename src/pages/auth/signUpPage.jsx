@@ -1,13 +1,13 @@
 
-import {Jwt} from '../utils/jwt'
-import {SignUp} from '../api/authApi'
+import {Jwt} from '../../utils/jwt'
+import {SignUp} from '../../api/authApi'
 import React, {useState} from "react";
 import Background from '../../assets/bg-login.png'
 import { NavLink, useNavigate } from 'react-router-dom'
 import LogoFinansaku from '../../assets/fix-Logo.svg'
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 
 
 function Register() {
@@ -27,6 +27,7 @@ function Register() {
 
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+    // validation for answering the question
     const validasi = () => {
         const newErrors = {}
 
@@ -56,6 +57,7 @@ function Register() {
         return Object.keys(newErrors).length === 0;
     }
 
+    // clicked submit
     const handleSubmit = async (e) => {
         e.preventDefault()
 

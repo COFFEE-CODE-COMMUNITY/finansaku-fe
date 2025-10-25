@@ -4,9 +4,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import LogoFinansaku from "../../assets/fix-Logo.svg";
 import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff } from "lucide-react";
-import { login } from "../api/authApi";
-import { useUser } from "../hooks/useUser";
-import { Jwt } from "../utils/jwt";
+import { login } from "../../api/authApi";
+import { useUser } from "../../hooks/useUser";
+import { Jwt } from "../../utils/jwt";
 
 
 function Login() {
@@ -52,8 +52,8 @@ function Login() {
         e.preventDefault();
 
         if (!validateForm()) return;
-        setLoading(true);
 
+        setLoading(true);
         try {
             const response = await login({ email, password });
             const body = await response.json();
@@ -73,7 +73,7 @@ function Login() {
             await sleep(1000);
             const payload = Jwt(body.data.token);
             saveUser(payload)
-            navigate("/dashboard") // ganti
+            navigate("/dashboard")
         }
         } catch (err) {
             console.log(err)

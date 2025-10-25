@@ -1,8 +1,8 @@
 import React from 'react';
-import FinansakuLogo from '../../../assets/finansaku-logo.svg'
+import FinansakuLogo from '../assets/finansaku-logo.svg'
 import {Home, Info, MessageSquare, Book} from 'react-feather'
 import {NavLink} from 'react-router-dom'
-import Finansaku from '../../../assets/finansaku.svg'
+import Finansaku from '../assets/finansaku.svg'
 
 //sticky top-0 z-50
 function Navbar(){

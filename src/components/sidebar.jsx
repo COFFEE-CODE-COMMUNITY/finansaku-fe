@@ -1,16 +1,21 @@
 import React from 'react'
-import FinansakuLogo from '../../../assets/finanSaku-Logo.svg'
+import FinansakuLogo from '../assets/finanSaku-Logo.svg'
 import {PieChart, Clipboard, Calendar, Clock, LogOut, Settings, Book, Bell} from 'react-feather'
 import {NavLink, useNavigate} from 'react-router-dom'
-import ImagePerson from '../../../assets/person-img.svg'
+import ImagePerson from '../assets/person-img.svg'
+import { useUser } from "../hooks/useUser";
 
 function Sidebar(){
 
     const navigate = useNavigate();
+    const { clearUser } = useUser(); 
 
     const handleLogOut = () => {
-        localStorage.removeItem("token");
-        navigate("/")
+        localStorage.removeItem("token"); // delete the token from localStorage
+
+        clearUser();// clear data user at context
+
+        navigate("/"); // Redirect to dashboard page or maybe login?
     }
     return(
         <div className='bg-[#0D1B2A] flex flex-col gap-0 h-screen'>

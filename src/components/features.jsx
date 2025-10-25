@@ -1,8 +1,8 @@
 import React from 'react'
-import IconAlarm from '../../../assets/icon-alarm.svg'
-import IconFinancial from '../../../assets/icon-financial.svg'
-import IconCalendar from '../../../assets/calendar-feature.svg'
-import IconStatistic from '../../../assets/icon-statistic.svg'
+import IconAlarm from '../assets/icon-alarm.svg'
+import IconFinancial from '../assets/icon-financial.svg'
+import IconCalendar from '../assets/calendar-feature.svg'
+import IconStatistic from '../assets/icon-statistic.svg'
 
 
 function Features(){

@@ -5,7 +5,7 @@ function Faq(){
     const [open, setOpen] = useState(null)
     const question = [
         {id : 1, title : "Bagaimana cara memulai finansaku", answer : "Mulai dengan mengisi survey singkat tentang pengeluaran dan  preferensi keuangan anda. Data ini akan digunakan untuk menyesuaikan rekomendasi budgeting"},
-        {id : 2, title : "Apa saja yang ditampilkan di dashboard?", answer : "Mulai dengan mengisi survey singkat tentang pengeluaran dan  preferensi keuangan anda. Data ini akan digunakan untuk menyesuaikan rekomendasi budgeting"},
+        {id : 2, title : "Apa saja yang ditampilkan di dashboard?", answer : "Hasil survey & alokasi: rekap alokasi default kebutuhan pokok dan grafik statistik keuangan: chart persentase & nominal budgeting, serta pengeluaran tertinggi selama 3 bulan terakhir."},
         {id : 3, title : "Bisakah saya menyesuaikan anggaran  yang  disarankan?", answer : "Saat ini, Finansaku belum menyediakan fitur untuk menyesuaikan anggaran yang disarankan. Semua alokasi yang ditampilkan masih bersifat default untuk kebutuhan pokok berdasarkan hasil survey."},
         {id : 4, title : "Apakah data keuangan saya aman?", answer : "Ya, Finansaku menjaga keamanan data keuangan pengguna dengan standar privasi yang ketat. Semua informasi tersimpan secara aman dan hanya bisa diakses oleh pengguna yang bersangkutan."}
     ]

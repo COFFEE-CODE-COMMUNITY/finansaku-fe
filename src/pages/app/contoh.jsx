@@ -7,19 +7,18 @@ function Survey() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowPopup(true); // tampilkan pop-up saat tombol submit diklik
+    setShowPopup(true); //show pop up when submit clicked
   };
 
   const handleConfirm = () => {
     setShowPopup(false);
     alert("Survey berhasil dikirim!");
-    // di sini kamu bisa lanjutkan aksi submit ke backend atau navigasi halaman lain
+    // be be be be
     // Simpan status ke localStorage
     localStorage.setItem("surveyFilled", "true");
 
     alert("Survey berhasil dikirim!");
 
-    // Arahkan ke dashboard
     navigate("/dashboard");
   };
 
@@ -29,7 +28,7 @@ function Survey() {
 
   return (
     <div className="flex flex-col relative justify-center ml-4 items-start text-white w-full h-full">
-      <h2 className="absolute top-[65px] text-xl">Isi survey ini untuk mengetahui kondisi keuanganmu dan <br />dapatkan insight pengelolaan finansial yang lebih baik.</h2>
+        <h2 className="absolute top-[65px] text-xl">Isi survey ini untuk mengetahui kondisi keuanganmu dan <br />dapatkan insight pengelolaan finansial yang lebih baik.</h2>
 
       <div className="flex flex-col gap-4 top-[150px] absolute justify-center items-start">
         <div className="mb-6 flex flex-col gap-4">
