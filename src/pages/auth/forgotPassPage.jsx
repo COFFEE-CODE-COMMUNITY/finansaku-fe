@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Background from "../../../assets/bg-login.png";
-import FinansakuLogo from "../../../assets/fix-Logo.svg";
+import Background from "../../assets/bg-login.png";
+import FinansakuLogo from "../../assets/fix-Logo.svg";
 import { ForgotPass } from "../../api/authApi";
 import { Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";

@@ -8,7 +8,7 @@ import Finansaku from '../assets/finansaku.svg'
 function Navbar(){
     
     return(
-        <div className='flex py-4 bg-[#0D1B2A] justify-between fixed w-full z-50 px-16 items-center text-white h-[10vh] font-bold'>
+        <div className='flex py-4 max-w- bg-[#0D1B2A] justify-between fixed w-full z-50 px-16 items-center text-white h-[10vh] font-bold'>
 
             <div>
                 <img src={Finansaku} alt="Finansaku Logo" className='h-[15rem]'/>
@@ -25,7 +25,7 @@ function Navbar(){
 
             <div className='flex gap-3'>
                 <NavLink to="/login"  className='bg-[#415A77] border border-white rounded-2xl py-2 px-4 font-bold'>Login</NavLink>
-                <NavLink to="/SignUp"  className='bg-[#778DA9] border border-white rounded-2xl py-2 px-4 font-bold'>Sign Up</NavLink>
+                <NavLink to="/signUp"  className='bg-[#778DA9] border border-white rounded-2xl py-2 px-4 font-bold'>Sign Up</NavLink>
             </div>
 
 

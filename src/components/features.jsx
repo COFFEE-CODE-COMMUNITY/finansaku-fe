@@ -24,7 +24,7 @@ function Features(){
             
             <div className='flex flex-wrap gap-x-12 justify-center items-center w-[1200px] gap-y-12'>
                 {wrap.map((features, index) => (
-                    <div key={index} className='flex bg-white justify-center items-center rounded-xl h-[28vh] w-[500px] gap-x-4 p-8'>
+                    <div key={index} className='flex bg-white justify-center items-center rounded-xl h-[200px] w-[500px] gap-x-4 p-8'>
                     <img src={features.img} alt="Icon" className='h-[70%]'/>
 
                     <div className=' flex flex-col'>

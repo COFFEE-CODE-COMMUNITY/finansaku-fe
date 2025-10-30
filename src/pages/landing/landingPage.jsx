@@ -6,7 +6,6 @@ import Faq from '../../components/faq'
 import Footer from '../../components/footer'
 import Features from '../../components/features'
 import ArticlePage from '../../components/article'
-import PasswordChange from '../auth/passChangesPage'
 
 function LandingPage(){
 
@@ -16,7 +15,6 @@ function LandingPage(){
     return(
         <>
             <Navbar/>
-            <PasswordChange/>
             <div id='home' className='flex justify-center items-center gap-24  h-screen'>
 
                 <div className='text-white flex flex-col justify-center items-center h-full w-full'>
@@ -24,14 +22,14 @@ function LandingPage(){
                         <h1 className='text-6xl font-bold mb-2.5'>Kelola uangmu <br></br> hidup lebih <br></br> terencana </h1>
                         <p>Dengan finansaku, budgeting jadi cepat dan <br /> praktis. Atur uangmu agar setiap rupiah digunakan <br />dengan bijak.</p>
                         <div className='bg-[#3A86FF] rounded-2xl border border-white py-2 px-4 mt-6 w-45 text-center'>
-                            <NavLink to='/signup' className='font-bold'>Atur finansialmu</NavLink>
+                            <NavLink to='/login' className='font-bold'>Atur finansialmu</NavLink>
                         </div>
                     
                     </div>
                 </div>
 
                 <div className='h-full w-full flex items-end justify-end relative'>
-                    <img src={LandingPageIcon} alt="Icon" className='h-[80%] absolute top-20 right-25 z-10'/>
+                    <img src={LandingPageIcon} alt="Icon" className='absolute top-20 right-25 z-10'/>
                 </div>
             </div>
 
@@ -39,7 +37,6 @@ function LandingPage(){
             <Features/>
             <Faq/>
             <ArticlePage/>
-            <PasswordChange/>
             <Footer/>
 
         </>

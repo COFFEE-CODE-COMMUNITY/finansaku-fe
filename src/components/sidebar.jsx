@@ -39,7 +39,7 @@ function Sidebar(){
                     <p className='text-white text-lg'>Ucup Surucup</p>
                 </div> */}
 
-                <button onClick={handleLogOut} className='bg-white flex justify-start items-center w-[250px] text-red-600 p-3 text-center gap-4 rounded-2xl text-xl hover:bg-red-300  hover:outline-red-900/50 hover:outline-4'><LogOut/> Log Out</button>
+                <button onClick={handleLogOut} className='bg-red-500 flex justify-start items-center w-[250px] text-red-600 p-3 text-center gap-4 rounded-2xl text-xl hover:bg-red-300  hover:outline-red-900/50 hover:outline-4'><LogOut/> Log Out</button>
             </div>
         </div>
     )

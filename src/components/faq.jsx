@@ -16,14 +16,14 @@ function Faq(){
 
     return(
         <>
-            <div id='Faq' className='flex justify-between h-screen relative'>
-                <div className='z-2 flex items-center justify-center w-[45.6%]'>
+            <div id='Faq' className='flex justify-center     w-full h-screen relative'>
+                <div className='z-2 flex items-center justify-center w-[880px]'>
                     <p className='text-7xl font-bold text-white'>Frequently <br/> Asked <span>Question</span></p>
                 </div>
 
-                <div className='flex flex-col gap-y-5 w-[54.4%] items-center justify-center'>
+                <div className='flex flex-col gap-y-5 w-[1046px] items-center justify-center'>
                     {question.map((informasi )=> ( 
-                        <div key={informasi.id} className= 'bg-white shadow-md rounded-2xl  mb-6 hover:shadow-xl transition-shadow duration-300 w-[80%]'>
+                        <div key={informasi.id} className= 'bg-white shadow-md rounded-2xl  mb-6 hover:shadow-xl transition-shadow duration-300 w-[700px]'>
                             <button onClick={() => toggleOPen(informasi.id)} className='w-full flex justify-between items-center p-5 text-left'>
                                 <h2 className='text-xl font-bold text-black'>{informasi.title}</h2>
                                 <div className={`bg-[#778DA9] text-white p-2 rounded-full transform transition-transform duration-300 ${open === informasi.id ? "rotate-180" : ""}`}>

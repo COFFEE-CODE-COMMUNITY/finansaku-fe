@@ -15,12 +15,8 @@ import LandingPage from './pages/landing/landingPage.jsx'
 import MainLayout from './layout/mainLayout.jsx'
 import ArticlePage from './pages/landing/articlePage.jsx'
 import WaitPage from './components/waitPage.jsx'
-
-const isLoggedIn = () => {
-  console.log( localStorage.getItem("token"))
-  return localStorage.getItem("token") !== null; // misal token disimpan di localStorage
-};
-
+import ProtectedRoute from './middleware/protectedRoute.jsx'
+import ForgotPassword from './pages/auth/forgotPassPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <UserProvider>
@@ -29,21 +25,20 @@ createRoot(document.getElementById('root')).render(
 
           <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path='/SignUp' element={<SignUP/>}/> 
-            <Route path="/ReadArticle" element={<ReadArticle />} />
-            <Route path="/Article" element={<ArticlePage />} />
-            <Route path="/WaitPage" element={<WaitPage />} />
-            {/* <Route path='/ForgotPassword' element={<ForgotPass/>}/> BELOM DIAKTIFKAN LAGI*/}
-
-            <Route element={isLoggedIn() ? <MainLayout /> : <Navigate to="/login" />}>
+            <Route path='/signUp' element={<SignUP/>}/> 
+            <Route path="/readArticle" element={<ReadArticle />} />
+            <Route path="/article" element={<ArticlePage />} />
+            <Route path="/waitPage" element={<WaitPage />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+  
+            
+            <Route element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/survey" element={<Survey />} />
               <Route path="/calendar" element={<Calendar />} />
             </Route>
-
-            {/* def navigate */}
-            {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
+
     </BrowserRouter>
   </UserProvider>,
 )

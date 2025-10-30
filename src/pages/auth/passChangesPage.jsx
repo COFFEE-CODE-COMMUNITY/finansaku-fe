@@ -8,28 +8,28 @@ import { useLocation } from "react-router-dom";
 
 
 function PasswordChange(){
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState();
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+    const [errors, setErrors] = useState({})
+    const [loading, setLoading] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
     const location = useLocation();
-    const token = new URLSearchParams(location.search).get("token");
+    const token = new URLSearchParams(location.search).get("token")
     const navigate = useNavigate()
 
     const validateForm = () => {
-        const newErrors = {};
+        const newErrors = {}
 
         if (!password) {
-            newErrors.password = "Password wajib diisi";
+            newErrors.password = "Password wajib diisi"
         }
 
         if (!confirmPassword) {
             newErrors.confirmPassword = "Konfirmasi password wajib diisi";
         } else if (password && confirmPassword && password !== confirmPassword) {
-            newErrors.confirmPassword = "Password tidak sesuai";
+            newErrors.confirmPassword = "Password tidak sesuai"
         }
 
         setErrors(newErrors);
@@ -42,12 +42,13 @@ function PasswordChange(){
 
         setLoading(true);
         try {
-            const res = await changePass({ token, password });
+            const res = await changePass({ token, password })
             if (res.ok) {
+                console.log("Berhasil Dirubah")
                 navigate("/Login")
             } else {
-                const data = await res.json();
-                alert(data.message || "Gagal mengubah password");
+                const data = await res.json(); // ubah ke json
+                alert(data.message || "Gagal mengubah password") // kalo msg ada tampilin kalo ga ada tampilin sebelah kanan
             }
         } catch (err) {
             console.error("Error:", err);
@@ -65,7 +66,7 @@ function PasswordChange(){
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="relative">
                         <label htmlFor="newPass" className="font-semibold"> Password : </label>
-                         <input type={showPassword ? "text" : "password"} id="newPass"  onChange={(e) => setPassword(e.target.value)}value={password} placeholder="Masukkan password" className={`border ${ errors.password ? "border-red-400" : "border-gray-400"} mt-2.5 rounded-full px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
+                         <input autoComplete="new-password" type={showPassword ? "text" : "password"} id="newPass"  onChange={(e) => setPassword(e.target.value)}value={password} placeholder="Masukkan password" className={`border ${ errors.password ? "border-red-400" : "border-gray-400"} mt-2.5 rounded-full px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-[55px] -translate-y-1/2 text-gray-600">
                             {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                         </button>
@@ -74,7 +75,7 @@ function PasswordChange(){
 
                     <div className="relative">
                         <label htmlFor="confirmPass" className="font-semibold"> Konfirmasi Password : </label>
-                        <input  type={showConfirmPassword ? "text" : "password"} id="confirmPass" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} placeholder="Masukkan ulang password" className={`border ${  errors.confirmPassword ? "border-red-400" : "border-gray-400"  } mt-2.5 rounded-full px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
+                        <input  autoComplete="new-password" type={showConfirmPassword ? "text" : "password"} id="confirmPass" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} placeholder="Masukkan ulang password" className={`border ${  errors.confirmPassword ? "border-red-400" : "border-gray-400"  } mt-2.5 rounded-full px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
                         <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}  className="absolute right-4 top-[55px] -translate-y-1/2 text-gray-600" >
                             {showConfirmPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                         </button>
