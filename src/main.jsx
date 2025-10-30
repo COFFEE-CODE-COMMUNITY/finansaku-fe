@@ -1,9 +1,7 @@
-import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom' 
 import './index.css'
 import { UserProvider } from './context/userProvider.jsx'
-// import Route from "./routePages.jsx"
 import Article from './pages/landing/articlePage.jsx'
 import Login from './pages/auth/loginPage'
 import SignUP from './pages/auth/signUpPage'
@@ -31,11 +29,12 @@ createRoot(document.getElementById('root')).render(
             <Route path="/waitPage" element={<WaitPage />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
   
-            
-            <Route element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/survey" element={<Survey />} />
-              <Route path="/calendar" element={<Calendar />} />
+            <Route element={<ProtectedRoute/>}>
+              <Route element={<MainLayout/>}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/survey" element={<Survey />} />
+                <Route path="/calendar" element={<Calendar />} />
+              </Route>
             </Route>
         </Routes>
 

@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {verify} from '../api/authApi'
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = () => {
     const navigate = useNavigate()
     const [isValid, setIsValid] = useState(false)
 
@@ -10,10 +10,10 @@ const ProtectedRoute = ({children}) => {
         const verifyToken = async () => {
             try {
                 const response = await verify()
-
                 if (response.ok){
                     setIsValid(true)
                 } else {
+                    setIsValid(false)
                     navigate('/login', {replace: true}) // replace true itu agar si usernya tidak bisa back ke halaman sebelumnya jd cup di navigate login
                 }
             } catch(error){
@@ -28,7 +28,7 @@ const ProtectedRoute = ({children}) => {
         return null // blm verif jangan ditampilin dulu pagenya
     }
 
-    return children // kalo valid tampilin pagenya
+    return <Outlet /> // kalo valid tampilin pagenya
 }
 
 export default ProtectedRoute
