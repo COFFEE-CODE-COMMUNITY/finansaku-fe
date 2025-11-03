@@ -10,20 +10,17 @@ function Sidebar(){
     const navigate = useNavigate();
     const { clearUser } = useUser(); 
 
-    const handleLogOut = () => {
-        localStorage.removeItem("token"); // delete the token from localStorage
-
-        clearUser();// clear data user at context
-
-        navigate("/"); // Redirect to dashboard page or maybe login?
+    const handleLogOut = async() => {
+        await clearUser()
+        navigate('/login')
     }
     return(
-        <div className='bg-[#0D1B2A] flex flex-col gap-0 h-screen'>
-           <div className='flex justify-center items-center h-[15%]'>
+        <div className='bg-[#0D1B2A] flex flex-col gap-4 h-screen'>
+           <div className='flex justify-center items-center h-[100px]'>
              <img src={FinansakuLogo} alt="" className='h-[300px]'/>
            </div>
 
-            <div className='text-white flex flex-col gap-8'>
+            <div className='text-white flex flex-col gap-6'>
                 <NavLink to="/dashboard" className="flex gap-2.5 text-xl items-center justify-start ml-8"><PieChart/>Dashboard</NavLink>
                 <NavLink to="/survey" className="flex gap-2.5 text-xl items-center justify-star ml-8"><Clipboard/>Survey</NavLink>
                 <NavLink to="/calendar" className="flex gap-2.5 text-xl items-center justify-start ml-8"><Calendar/>Calendar</NavLink>
@@ -39,7 +36,16 @@ function Sidebar(){
                     <p className='text-white text-lg'>Ucup Surucup</p>
                 </div> */}
 
-                <button onClick={handleLogOut} className='bg-red-500 flex justify-start items-center w-[250px] text-red-600 p-3 text-center gap-4 rounded-2xl text-xl hover:bg-red-300  hover:outline-red-900/50 hover:outline-4'><LogOut/> Log Out</button>
+                {/* <button onClick={handleLogOut} className='bg-[#DC2626] flex border border-white justify-start items-center w-[200px] text-white p-3 text-center gap-4 rounded-2xl text-xl hover:bg-[#ba2121]'><LogOut/> Log Out</button> */}
+
+                <button 
+                    onClick={handleLogOut} 
+                    className='bg-[#DC2626] flex border border-white justify-center items-center w-[250px] text-white p-3 gap-4 rounded-2xl text-xl hover:bg-[#ba2121]'
+                    >
+                    <LogOut/> Log Out
+                </button>
+
+
             </div>
         </div>
     )

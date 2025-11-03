@@ -15,7 +15,7 @@ function Topbar() {
 
   const currentTitle = titles[location.pathname] || "DashBoard";
   return (
-    <div className="flex justify-between items-center w-[80%] h-[15%] px-12 py-4 absolute right-0 z-1 bg-white/0 text-black">
+    <div className="flex justify-start items-center w-[864px] h-[165px] px-12 z-1 bg-white/0 text-black">
         <div>
            <h1 className="text-3xl font-bold text-white">{currentTitle}</h1>
         </div>

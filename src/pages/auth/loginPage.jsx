@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff } from "lucide-react";
 import { login } from "../../api/authApi";
 import { useUser } from "../../hooks/useUser";
+import config from "../../config/script";
 
 
 function Login() {
@@ -42,7 +43,7 @@ function Login() {
         if (!password) {
             newErrors.password = "Password wajib diisi";
         }
-
+        
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -55,11 +56,15 @@ function Login() {
         setLoading(true);
         try {
             const response = await login({ email, password });
+            console.log(response.status)
             const body = await response.json();
             console.log(body);
 
             if (response.ok) {
-                // token is stored via httpOnly cookie — no need to read it here
+                // delete just trying
+                // localStorage.setItem("isLoggedIn", "true"); //
+                // localStorage.setItem("user", JSON.stringify(body.data.user)); //
+
                 if (remember) {
                     localStorage.setItem("savedEmail", email);
                 } else {
@@ -72,7 +77,12 @@ function Login() {
                 // short delay for UX
                 await sleep(1000);
                 navigate("/dashboard");
+            } else if (!response.ok) {
+                const msg = body?.error || body?.message || "Email atau password salah";
+                setErrors((prev) => ({ ...prev, general: msg }));
+                return;
             }
+            
         } catch (err) {
             console.log(err)
         } finally {
@@ -121,6 +131,8 @@ function Login() {
                     <button type="submit" disabled={loading}  className={`flex justify-center items-center gap-2 bg-[#1B263B] text-white font-semibold py-2 rounded-full transition  ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#213369]"}`} >
                         {loading ? "Login..." : "Login"}
                     </button>
+                    {errors.general && (<p className="text-red-500 text-sm text-center">{errors.general}</p>)}
+
 
                     <div className="flex items-center my-2">
                         <hr className="flex-grow border-gray-300" /> <span className="mx-2 text-gray-500 text-sm"> atau login dengan   </span>
@@ -128,7 +140,7 @@ function Login() {
                     </div>
 
                     <div className="flex justify-center items-center">
-                        <button className="w-24 flex items-center justify-center hover:bg-gray-100 py-2 rounded-lg transition">
+                        <button onClick={() => window.location.href = `${config.BASE_URL}/auth/google`} className="w-24 flex items-center justify-center hover:bg-gray-100 py-2 rounded-lg transition">
                             <FcGoogle size={40} />
                         </button>
                     </div>

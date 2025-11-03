@@ -45,18 +45,18 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="h-screen w-full relative justify-center items-center text-white flex flex-col">
+    <div className="h-screen relative justify-start items-center text-white flex flex-col">
 
-      <div className="mb-8 flex absolute left-8 top-[65px] justify-center items-start">
-        <p className="text-white text-xl mt-2">
+      <div className="absolute top-0 left-0 mb-8 flex justify-start items-start">
+        <p className="text-white text-xl">
           Klik tanggal untuk menambahkan pengingat pembayaran atau alokasi.
           <br />
           Tanggal yang dipilih akan ditandai dengan dot.
         </p>
       </div>
 
-      <div className="flex flex-col p-8 justify-center items-end gap-8 mt-26">
-        <div className="flex justify-center items-start gap-12">
+      <div className="flex flex-col justify-start items-end gap-8 mt-24">
+        <div className="flex justify-center items-start gap-16">
           {/* Kalender */}
           <div className="bg-white h-[350px] rounded-2xl p-6 shadow-md">
             <Calendar

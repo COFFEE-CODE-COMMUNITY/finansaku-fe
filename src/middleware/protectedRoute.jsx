@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {verify} from '../api/authApi'
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({children}) => {
     const navigate = useNavigate()
     const [isValid, setIsValid] = useState(false)
 
@@ -28,7 +28,9 @@ const ProtectedRoute = () => {
         return null // blm verif jangan ditampilin dulu pagenya
     }
 
-    return <Outlet /> // kalo valid tampilin pagenya
+    return children // kalo valid tampilin pagenya
 }
 
 export default ProtectedRoute
+
+

@@ -5,6 +5,7 @@ import "react-calendar/dist/Calendar.css";
 
 export default function DashboardContent() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  
 
   const dataOktober = [
     { kategori: "Makan", jumlah: 1000000 },
@@ -31,9 +32,10 @@ export default function DashboardContent() {
     { tanggal: 4, teks: "Bayar internet Rp 500.000", warna: "bg-yellow-300" },
   ];
 
+
   return (
-    <div className="flex flex-col text-white pt-16 w-full overflow-hidden">
-      <h2 className="m-2.5 text-start text-xl">Lihat gambaran keuanganmu di sini. Mulai dari alokasi tiap kategori hingga notes dalam kalender.</h2>
+    <div className="flex flex-col text-white w-full overflow-hidden">
+      <h2 className="mb-2.5 text-start text-xl">Lihat gambaran keuanganmu di sini. Mulai dari alokasi tiap kategori hingga notes dalam kalender.</h2>
       
       <div className="grid grid-cols-3 grid-rows-2 mt-2.5 justify-center gap-x-2.5 gap-y-0 h-full">
         {/* Grafik Batang */}

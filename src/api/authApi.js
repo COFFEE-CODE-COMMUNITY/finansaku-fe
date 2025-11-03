@@ -15,6 +15,7 @@ export const login = async ({ email, password }) => {
 
 // === POST Sign Up ===
 export const SignUp = async ({name, username, email, password }) => {
+  console.log(`${config.BASE_URL}/auth/register`)
   return fetch(`${config.BASE_URL}/auth/register`, { // sesuaikan URL
     method: 'POST',
     headers: {
@@ -33,13 +34,12 @@ export const SignUp = async ({name, username, email, password }) => {
 
 // forgot pass
 export const ForgotPass = async({email}) =>{
-    return fetch(`${config.BASE_URL}/auth/forgotpassowrd`, { // sesuaikan URL
+    return fetch(`${config.BASE_URL}/auth/forgot-password`, { // sesuaikan URL
         method : 'POST',
         headers: {
             'Content-Type' : 'application/json',
             'Accept' : 'application/json'
         }, 
-        // credentials: 'include', tidak butuh token
         body : JSON.stringify({
             email, 
         })
@@ -47,42 +47,51 @@ export const ForgotPass = async({email}) =>{
 }
 
 // change pass
-export const changePass = async({token, password}) =>{
-    return fetch(`${config.BASE_URL}/auth/forgotpassowrd`, { // sesuaikan URL
+export const changePass = async({password}) =>{
+    return fetch(`${config.BASE_URL}/auth/change-password`, { // sesuaikan URL
         method : 'PATCH',
         headers: {
             'Content-Type' : 'application/json',
             'Accept' : 'application/json',
         }, 
-        body : JSON.stringify({token, password})
+        credentials: "include",
+        body : JSON.stringify({password})
     })
 }
 
   // === GET Verify Token ===
-  export const verify = async () => {
-    return fetch(`${config.BASE_URL}/auth/verify`, { // sesuaikan URL
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      },
-      credentials: 'include', // cookie dikirim otomatis
-    });
+export const verify = async () => {
+  return fetch(`${config.BASE_URL}/auth/me`, { // sesuaikan URL
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+    },
+    credentials: 'include', // cookie dikirim otomatis
+  });
 };
 
+//Logout?
+export const logout = async () => {
+  return fetch(`${config.BASE_URL}/auth/logout`, {
+    method : 'POST',
+    credentials : "include"
+  })
+}
 
 // Post Survey
-// export const submitSurvey = async (domisili, salary, status) => {
-//         return fetch(config.Base_URL_SURVEY, {
-//             method : 'POST',
-//             headers : {
-//                 'Content-Type' : 'application/json',
-//                 'Accept' : 'application/json'
-//             },
-//             body : JSON.stringify({
-//                 domisili, 
-//                 salary, 
-//                 status, 
-//         })
-//         })
-// };
+export const SubmitSurvey = async (domisili, salary, tanggungan, hasilSurvey) => {
+        return fetch(config.Base_URL_SURVEY, {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json'
+            },
+            body : JSON.stringify({
+                domisili, 
+                salary, 
+                tanggungan,
+                hasilSurvey
+        })
+        })
+};
 

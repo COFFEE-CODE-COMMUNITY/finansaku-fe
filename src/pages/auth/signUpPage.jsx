@@ -6,6 +6,7 @@ import LogoFinansaku from '../../assets/fix-Logo.svg'
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { useUser } from "../../hooks/useUser";
+import config from '../../config/script';
 
 
 function Register() {
@@ -47,8 +48,11 @@ function Register() {
              newErrors.email = "Format email tidak valid";
         }
 
+        // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
         if (!password) {
             newErrors.password = "Password wajib diisi!"
+        // } else if(!passwordRegex.test(password)){
+            // newErrors.password = "Password harus minimal 8 karakter, mengandung huruf besar, huruf kecil, angka, dan simbol."
         }
 
         setErrors(newErrors)
@@ -70,10 +74,8 @@ function Register() {
             const body = await response.json()
             console.log(body)
 
-            if (response.status === 201){ // if sukses
-                // localStorage.setItem("Token", body.data.token);
-                // await sleep(1000)
-                // const payload = Jwt(body.data.token)
+            if (response.status === 201){
+               
                 saveUser(body.data.user) // simpan data user
                 navigate('/dashboard')
             } else {
@@ -88,6 +90,53 @@ function Register() {
             setLoading(false)
         }
     } 
+
+    //NON AUTH VERIVY
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+
+//         if (!validasi()) return;
+
+//         setLoading(true);
+//         try {
+//         await sleep(1000);
+//         const response = await SignUp({
+//             name,
+//             username: userName,
+//             email,
+//             password,
+//         });
+//         const body = await response.json();
+//         console.log(body);
+
+//         if (response.status === 201) {
+//             // ✅ Simpan status login lokal
+//             localStorage.setItem("isLoggedIn", "true");
+//             localStorage.setItem(
+//             "user",
+//             JSON.stringify({ name, username: userName, email })
+//             );
+
+//             // Simpan ke context (opsional)
+//             saveUser({ name, username: userName, email });
+
+//             navigate("/dashboard"); // arahkan ke dashboard
+//         } else {
+//             if (response.status === 409 && body.errors?.includes("userName")) {
+//             setErrors({ userName: "Username sudah digunakan" });
+//             } else {
+//             alert("Gagal register: " + body.message);
+//             }
+//         }
+//         } catch (err) {
+//         console.log("Error:", err);
+//         alert("Terjadi kesalahan koneksi server");
+//         } finally {
+//         setLoading(false);
+//     }
+//   };
+
+
 
 
     return (
@@ -155,7 +204,7 @@ function Register() {
                         </div>
 
                         <div className="flex justify-center items-center">
-                            <button className="w-24 flex items-center justify-center  hover:bg-gray-100 font-semibold py-2 rounded-lg text-lg transition m-2.5"><FcGoogle size={30} /></button>
+                            <button onClick={() => window.location.href = `${config.BASE_URL}/auth/google`} className="w-24 flex items-center justify-center  hover:bg-gray-100 font-semibold py-2 rounded-lg text-lg transition m-2.5"><FcGoogle size={30} /></button>
                         </div>
 
                         <p className="text-center text-gray-700 text-sm">Sudah punya akun?
