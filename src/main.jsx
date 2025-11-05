@@ -16,7 +16,7 @@ import WaitPage from './components/waitPage.jsx'
 import ProtectedRoute from './middleware/protectedRoute.jsx'
 import ForgotPassword from './pages/auth/forgotPassPage.jsx'
 import DashboardSet from './pages/app/dasboardSet.jsx'
-import Oauth from './pages/auth/oAuth.jsx'
+import OauthSuccess from './pages/auth/oAuth.jsx'
 
 createRoot(document.getElementById('root')).render(
   <UserProvider>
@@ -31,7 +31,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/waitPage" element={<WaitPage />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
   
-            <Route path="/oauth-success" element={<Oauth />} />
+            <Route path="/oauth-success" element={<OauthSuccess/>} />
             <Route element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
               <Route path="/dashboard" element={<DashboardSet />} />
               <Route path="/survey" element={<Survey />} />
