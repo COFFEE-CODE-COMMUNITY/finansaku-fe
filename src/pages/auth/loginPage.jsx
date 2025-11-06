@@ -111,7 +111,7 @@ function Login() {
                     <div className="flex flex-col text-left relative">
                         <div className="flex justify-between items-center mb-2">
                             <label className="font-semibold text-gray-800" htmlFor="userPass"> Password </label>
-                            <NavLink to="/ForgotPassword" className="text-sm text-[#4567B0] hover:underline" > Lupa Password? </NavLink>
+                            <NavLink to="/forgotPassword" className="text-sm text-[#4567B0] hover:underline" > Lupa Password? </NavLink>
                         </div>
 
                         <div className="relative">

@@ -77,7 +77,7 @@ function Register() {
             if (response.status === 201){
                
                 saveUser(body.data.user) // simpan data user
-                navigate('/waitPage')
+                navigate('/login')
             } else {
                 if (response.status === 409 && body.errors.includes('userName')){
                     setErrors({ userName: 'Username sudah digunakan' })

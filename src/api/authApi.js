@@ -48,7 +48,7 @@ export const ForgotPass = async({email}) =>{
 
 // change pass
 export const changePass = async({password}) =>{
-    return fetch(`${config.BASE_URL}/auth/change-password`, { // sesuaikan URL
+    return fetch(`${config.BASE_URL}/auth/reset-password`, { // sesuaikan URL
         method : 'PATCH',
         headers: {
             'Content-Type' : 'application/json',

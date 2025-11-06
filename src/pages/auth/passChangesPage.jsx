@@ -4,7 +4,6 @@ import LogoFinansaku from '../../assets/fix-Logo.svg'
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate} from 'react-router-dom'
 import {changePass} from '../../api/authApi'
-import { useLocation } from "react-router-dom";
 
 
 function PasswordChange(){
@@ -15,8 +14,6 @@ function PasswordChange(){
     const [loading, setLoading] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-    const location = useLocation();
-    const token = new URLSearchParams(location.search).get("token")
     const navigate = useNavigate()
 
     const validateForm = () => {
@@ -28,8 +25,6 @@ function PasswordChange(){
 
         if (!confirmPassword) {
             newErrors.confirmPassword = "Konfirmasi password wajib diisi";
-        } else if (password && confirmPassword && password !== confirmPassword) {
-            newErrors.confirmPassword = "Password tidak sesuai"
         }
 
         setErrors(newErrors);
@@ -42,9 +37,9 @@ function PasswordChange(){
 
         setLoading(true);
         try {
-            const res = await changePass({ token, password })
+            const res = await changePass({password})
             if (res.ok) {
-                console.log("Berhasil Dirubah")
+                console.log("Password berhasil dirubah")
                 navigate("/Login")
             } else {
                 const data = await res.json(); // ubah ke json
