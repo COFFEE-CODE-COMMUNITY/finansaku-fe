@@ -11,7 +11,7 @@ export default function DashboardContent() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const { reminders, setReminders } = useReminders();
 
-  // 🔹 Hapus otomatis reminder yang sudah lewat tanggal
+  // delete reminder yang udah kelewat
   useEffect(() => {
     const today = new Date();
     if (setReminders) {
@@ -41,14 +41,14 @@ export default function DashboardContent() {
 
   const getWarna = (kategori) => {
     switch (kategori) {
-      case "penting": return "#FF7C7C"; // merah
-      case "sedang": return "#FFF58C"; // kuning
-      case "biasa": return "#B6F4B6"; // hijau
-      default: return "#D1D5DB"; // abu
+      case "penting": return "#FF7C7C"
+      case "sedang": return "#FFF58C"
+      case "biasa": return "#B6F4B6" 
+      default: return "#D1D5DB"
     }
   };
 
-  // 🔹 Tambahkan titik di kalender untuk tanggal yang ada reminder
+  // add a dot
   const tileContent = ({ date, view }) => {
     if (view === "month") {
       const reminderForDate = reminders.filter(
@@ -96,7 +96,7 @@ export default function DashboardContent() {
                 {dataOktober.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
-                {/* 🔹 Tambahkan LabelList agar angka muncul di batang */}
+                {/* add label list for more information */}
                 <LabelList
                   dataKey="jumlah"
                   position="insideRight"

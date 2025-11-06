@@ -80,7 +80,7 @@ function Survey() {
     <div className="flex flex-col relative justify-center items-start text-white w-full h-full">
         <h2 className="absolute top-0 text-xl">Isi survey ini untuk mengetahui kondisi keuanganmu dan dapatkan insight pengelolaan finansial yang lebih baik.</h2>
 
-        <div className="flex flex-col gap-4 top-[40px] absolute justify-center items-start">
+        <div className="flex mt-8 flex-col gap-4 top-[40px] absolute justify-center items-start">
             <div className=" flex flex-col gap-4">
                 <label className="font-semibold text-xl" htmlFor="domisiliUser">1. Dari daerah mana kamu berasal?</label>
                 <input type="text" onChange={(e) => (setDomisiliUser(e.target.value))} value={domisiliUser} placeholder="Kota Bandung" className={`${ errors.domisiliUser ? "border-red-400" : "border-gray-400"} border w-[1000px] rounded p-2.5 focus:outline-none focus:border-blue-500`}/>

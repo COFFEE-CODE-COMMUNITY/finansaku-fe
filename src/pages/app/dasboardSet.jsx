@@ -1,14 +1,16 @@
 import React from "react";
-import DashboardContent from "./dashboard"; // file chart kamu
-import DefaultPage from "../../components/defDashboard"; // file default dashboard kamu
+import Register from "../auth/signUpPage";
+import DashboardContent from "./dashboard";
+import DefaultPage from "../../components/defDashboard";    
 
-// UNTUK ATUR YANG DITAMPILIN DI DASHBOARD
-export default function ProtectedDashboard() {
-  const sudahSurvey = localStorage.getItem("hasilSurvey") === "true";
+function DashboardSet(){
+    const sudahSurvey = localStorage.getItem("hasilSurvey")
 
-  return (
-    <>
-      {sudahSurvey ? <DashboardContent /> : <DefaultPage />}
-    </>
-  );
+    return(
+        <>
+            {sudahSurvey? <DashboardContent/> : <DefaultPage/>}
+        </>
+    )
 }
+
+export default DashboardSet

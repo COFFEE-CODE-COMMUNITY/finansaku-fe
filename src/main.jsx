@@ -19,13 +19,15 @@ import DashboardSet from './pages/app/dasboardSet.jsx'
 import OauthSuccess from './pages/auth/oAuth.jsx'
 import PassChangePage from './pages/auth/passChangesPage.jsx'
 import { ReminderProvider } from './context/reminderProvider.jsx'
+import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')).render(
   <UserProvider>
   <ReminderProvider>
     <BrowserRouter> 
-        <Routes>
+        <Toaster position="top-center" reverseOrder={false} /> 
 
+        <Routes>
           <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path='/signUp' element={<SignUP/>}/> 

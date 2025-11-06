@@ -7,6 +7,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { login } from "../../api/authApi";
 import { useUser } from "../../hooks/useUser";
 import config from "../../config/script";
+import { Loader2 } from "lucide-react";
+
 
 
 function Login() {
@@ -94,7 +96,7 @@ function Login() {
     <div className="flex h-screen w-full text-white">
 
         <div className="flex flex-col justify-center items-center w-1/2 bg-white text-black gap-8 px-8">
-            <div className="bg-white shadow-xl rounded-2xl p-10 flex flex-col items-center justify-center w-full max-w-md border border-gray-200">
+            <div className="bg-white m-12 w-full shadow-2xl flex flex-col justify-center items-center rounded-2xl py-8 max-w-md border border-gray-200">
                 <div className="flex flex-col items-center justify-center gap-4 space-y-2">
                     <h1 className="text-5xl font-bold">Login</h1>
                     <p className="text-lg text-gray-700 mb-4"> Selamat datang kembali! Saatnya lanjut <br /> kelola keuanganmu dengan lebih mudah</p>
@@ -128,9 +130,20 @@ function Login() {
                         <label htmlFor="remember" className="text-gray-800 text-sm"> Simpan di perangkat ini </label>
                     </div>
 
-                    <button type="submit" disabled={loading}  className={`flex justify-center items-center gap-2 bg-[#1B263B] text-white font-semibold py-2 rounded-full transition  ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#213369]"}`} >
+                    {/* <button type="submit" disabled={loading}  className={`flex justify-center items-center gap-2 bg-[#1B263B] text-white font-semibold py-2 rounded-full transition  ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#213369]"}`} >
                         {loading ? "Login..." : "Login"}
+                    </button> */}
+
+                    <button type="submit" className="bg-[#1B263B] hover:bg-[#15224A] text-white font-semibold py-2 rounded-full transition flex justify-center items-center" disabled={loading}>
+                        {loading ? (
+                        <>
+                            <Loader2 className="animate-spin mr-2 h-4 w-4" /> Login...
+                        </>
+                        ) : (
+                            "Login"
+                        )}
                     </button>
+
                     {errors.general && (<p className="text-red-500 text-sm text-center">{errors.general}</p>)}
 
 

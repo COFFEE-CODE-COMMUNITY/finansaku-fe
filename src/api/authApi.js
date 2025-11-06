@@ -47,17 +47,18 @@ export const ForgotPass = async({email}) =>{
 }
 
 // change pass
-export const changePass = async({password}) =>{
+export const changePass = async({ token, newPassword }) =>{
     return fetch(`${config.BASE_URL}/auth/reset-password`, { // sesuaikan URL
-        method : 'PATCH',
+        method : 'POST',
         headers: {
             'Content-Type' : 'application/json',
             'Accept' : 'application/json',
-        }, 
+        },
         credentials: "include",
-        body : JSON.stringify({password})
+        body : JSON.stringify({ token, newPassword })
     })
 }
+
 
   // === GET Verify Token ===
 export const verify = async () => {

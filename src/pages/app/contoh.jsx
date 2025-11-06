@@ -1,76 +1,114 @@
-import React, {useState} from "react";
-import { useNavigate } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import Calendar from "react-calendar";
+// // import "react-calendar/dist/Calendar.css";
+// import { useReminders } from "../../hooks/useReminder";
 
-function Survey() {
-  const [showPopup, setShowPopup] = useState(false);
-  const navigate = useNavigate();
+// export default function CalendarPage() {
+//   const [selectedDate, setSelectedDate] = useState(new Date());
+//   const [judul, setJudul] = useState("");
+//   const [kategori, setKategori] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowPopup(true); //show pop up when submit clicked
-  };
+//   const { reminders, addReminder, setReminders } = useReminders(); // ✅ tambahkan setReminders agar bisa update context
 
-  const handleConfirm = () => {
-    setShowPopup(false);
-    alert("Survey berhasil dikirim!");
-    // be be be be
-    // Simpan status ke localStorage
-    localStorage.setItem("surveyFilled", "true");
+//   const handleDateClick = (date) => setSelectedDate(date);
 
-    alert("Survey berhasil dikirim!");
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (selectedDate && judul && kategori) {
+//       addReminder({ date: selectedDate.toDateString(), judul, kategori });
+//       setJudul("");
+//       setKategori("");
+//     }
+//   };
 
-    navigate("/dashboard");
-  };
+//   const handleReset = () => {
+//     setSelectedDate(new Date());
+//     setJudul("");
+//     setKategori("");
+//   };
 
-  const handleCancel = () => {
-    setShowPopup(false);
-  };
+//   // ✅ Tambahkan useEffect ini untuk otomatis hapus reminder yang sudah lewat
+//   useEffect(() => {
+//     const today = new Date();
+//     today.setHours(0, 0, 0, 0);
 
-  return (
-    <div className="flex flex-col relative justify-center ml-4 items-start text-white w-full h-full">
-        <h2 className="absolute top-[65px] text-xl">Isi survey ini untuk mengetahui kondisi keuanganmu dan <br />dapatkan insight pengelolaan finansial yang lebih baik.</h2>
+//     const validReminders = reminders.filter((r) => {
+//       const reminderDate = new Date(r.date);
+//       reminderDate.setHours(0, 0, 0, 0);
+//       return reminderDate >= today; // hanya simpan reminder yang >= hari ini
+//     });
 
-      <div className="flex flex-col gap-4 top-[150px] absolute justify-center items-start">
-        <div className="mb-6 flex flex-col gap-4">
-          <p className="font-semibold mb-2 text-xl">1. Dari daerah mana kamu berasal?</p>
-          <input type="text" placeholder="Kota Bandung" className="border border-gray-400 w-[1000px] rounded p-4 focus:outline-none focus:border-blue-500"/>
-        </div>
+//     if (validReminders.length !== reminders.length) {
+//       setReminders(validReminders);
+//       localStorage.setItem("reminders", JSON.stringify(validReminders));
+//     }
+//   }, [reminders, setReminders]);
 
-        <div className="mb-6 flex flex-col gap-4">
-          <p className="font-semibold mb-2 text-xl"> 2. Gaji kamu per bulan berapa?</p>
-          <input type="text" placeholder="Rp. 5.000.000" className=" border border-gray-400 w-[1000px] rounded p-4 focus:outline-none focus:border-blue-500"/>
-        </div>
+//   const tileContent = ({ date, view }) => {
+//     if (view === "month") {
+//       const hasReminder = reminders.find((r) => r.date === date.toDateString());
+//       if (hasReminder) {
+//         const color =
+//           hasReminder.kategori === "penting"
+//             ? "bg-red-500"
+//             : hasReminder.kategori === "sedang"
+//             ? "bg-yellow-400"
+//             : "bg-green-500";
+//         return <div className={`w-2 h-2 rounded-full mx-auto mt-1 ${color}`} />;
+//       }
+//     }
+//     return null;
+//   };
 
-          <div className="mb-6 flex flex-col gap-4">
-            <p className="font-semibold mb-2 text-xl"> 3. Status kamu saat ini?</p>
-            <input type="text" placeholder="Mahasiswa" className=" border border-gray-400  w-[1000px] rounded p-4 focus:outline-none focus:border-blue-500" />
-          </div>
-        </div>
+//   return (
+//     <div className="h-screen relative justify-start items-start text-white flex flex-col">
+//       <div className="absolute top-0 left-0 mb-8 flex justify-start items-start">
+//         <p className="text-white text-xl">
+//           Klik tanggal untuk menambahkan pengingat pembayaran atau alokasi.
+//           <br />
+//           Tanggal yang dipilih akan ditandai dengan dot.
+//         </p>
+//       </div>
 
-        <div className="absolute top-[580px] right-24 flex justify-end items-end w-full">
-          <button className="bg-[#487BEA] hover:bg-blue-600 border border-white text-white px-5 py-2 rounded-lg transition w-[6rem] font-bold" onClick={handleSubmit}>Submit</button>
-        </div>
+//       <div className="flex flex-col justify-start items-end gap-8 mt-24">
 
-        {showPopup && (
-        <div className="fixed inset-0 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-8 shadow-lg text-center w-[450px]">
-            <div className="flex flex-col items-center gap-4">
-              <span className="text-4xl">⚠️</span>
-              <h2 className="text-xl font-bold text-black"> Konfirmasi Pengisian Survey </h2>
-              <p className="text-gray-700 text-sm">Apakah kamu yakin ingin mengirim survey ini? <br />Jawaban yang sudah dikirim tidak bisa diubah. </p>
-              <div className="flex gap-4 mt-4">
+//         <div className="flex justify-center items-start gap-18">        
+//           {/* Kalender */}
+//           <div className="bg-white h-[400px] rounded-2xl p-6 shadow-md">
+//             <Calendar onClickDay={handleDateClick}  value={selectedDate}  tileContent={tileContent} className="rounded-lg flex flex-col items-center justify-center text-black h-[350px]" />
+//           </div>
 
-                {/* Confirm*/}
-                <button onClick={handleConfirm} className="bg-[#487BEA] text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition" > Kirim </button>
-                <button onClick={handleCancel} className="bg-red-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 transition"> Batal </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+//           {/* Form */}
+//           <div className="bg-white text-black rounded-2xl h-[400px] flex flex-col items-center justify-center shadow-md p-6 w-[384px]">
+//             <form onSubmit={handleSubmit} className="flex flex-col gap-8 w-full">
+//               <div className="flex flex-col gap-4">
+//                 <label className="font-semibold text-lg"> 1. Tanggal yang dipilih : </label>
+//                 <input type="date" value={selectedDate.toISOString().split("T")[0]} onChange={(e) => setSelectedDate(new Date(e.target.value))} className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none" />
+//               </div>
 
-    </div>
-  );
-}
+//               <div className="flex flex-col gap-4">
+//                 <label className="font-semibold text-lg"> 2. Judul / Keperluan : </label>
+//                 <input type="text"  value={judul}  onChange={(e) => setJudul(e.target.value)} placeholder="Bayar internet" className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none" />
+//               </div>
 
-export default Survey;
+//               <div className="flex flex-col gap-4">
+//                 <label className="font-semibold text-lg"> 3. Kategori (dot) : </label>
+//                 <select value={kategori} onChange={(e) => setKategori(e.target.value)} className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none" >
+//                   <option value="">Pilih kategori</option>
+//                   <option value="penting" className="text-red-600"> 🔴 Penting </option>
+//                   <option value="sedang" className="text-yellow-600"> 🟡 Sedang </option>
+//                   <option value="biasa" className="text-green-600"> 🟢 Biasa </option>
+//                 </select>
+//               </div>
+//             </form>
+//           </div>
+//         </div>
+
+//         <div className="flex justify-end gap-4 w-[64px]">
+//           <button onClick={handleSubmit} className="bg-blue-600 border border-white hover:bg-blue-800 text-white px-6 py-2 rounded-lg transition font-semibold" >Simpan </button>
+//           <button onClick={handleReset} className="bg-red-500 border border-white hover:bg-red-700 text-white px-6 py-2 rounded-lg transition font-semibold" > Batal </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

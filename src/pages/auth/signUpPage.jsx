@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { useUser } from "../../hooks/useUser";
 import config from '../../config/script';
+import { Loader2 } from "lucide-react";
 
 
 function Register() {
@@ -91,53 +92,6 @@ function Register() {
         }
     } 
 
-    //NON AUTH VERIVY
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-
-//         if (!validasi()) return;
-
-//         setLoading(true);
-//         try {
-//         await sleep(1000);
-//         const response = await SignUp({
-//             name,
-//             username: userName,
-//             email,
-//             password,
-//         });
-//         const body = await response.json();
-//         console.log(body);
-
-//         if (response.status === 201) {
-//             // ✅ Simpan status login lokal
-//             localStorage.setItem("isLoggedIn", "true");
-//             localStorage.setItem(
-//             "user",
-//             JSON.stringify({ name, username: userName, email })
-//             );
-
-//             // Simpan ke context (opsional)
-//             saveUser({ name, username: userName, email });
-
-//             navigate("/dashboard"); // arahkan ke dashboard
-//         } else {
-//             if (response.status === 409 && body.errors?.includes("userName")) {
-//             setErrors({ userName: "Username sudah digunakan" });
-//             } else {
-//             alert("Gagal register: " + body.message);
-//             }
-//         }
-//         } catch (err) {
-//         console.log("Error:", err);
-//         alert("Terjadi kesalahan koneksi server");
-//         } finally {
-//         setLoading(false);
-//     }
-//   };
-
-
-
 
     return (
         <div className="flex min-h-screen w-full text-white overflow-y-auto scrollbar-none">
@@ -193,8 +147,14 @@ function Register() {
                             <NavLink><p className="text-[#4567B0] text-sm hover:underline">Kebijakan Privasi & Syarat Layanan</p></NavLink>
                         </div>
 
-                        <button type="submit" className={` text-white font-semibold py-2 m-8 rounded-full transition ${loading ? "bg-[#1B263B]" : "bg-[#22304a] hover:bg-[#213369]"}`} >
-                            {loading ? "Sign Up..." : "Sign Up"}
+                        <button type="submit" className="bg-[#1B263B] hover:bg-[#15224A] text-white font-semibold py-2.5 rounded-full transition flex justify-center items-center m-4" disabled={loading}>
+                            {loading ? (
+                            <>
+                                <Loader2 className="animate-spin mr-2 h-4 w-4" /> Sign Up...
+                            </>
+                            ) : (
+                                "Sign Up"
+                            )}
                         </button>
 
                         <div className="flex items-center">

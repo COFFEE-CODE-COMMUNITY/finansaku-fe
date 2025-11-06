@@ -4,6 +4,7 @@ import LogoFinansaku from '../../assets/fix-Logo.svg'
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate} from 'react-router-dom'
 import {changePass} from '../../api/authApi'
+import toast from 'react-hot-toast';
 
 
 function PasswordChange(){
@@ -35,11 +36,20 @@ function PasswordChange(){
         e.preventDefault();
         if (!validateForm()) return;
 
+        if (password !== confirmPassword) {
+            toast.error("Password dan konfirmasi password tidak sama!");
+            return;
+        }
+
         setLoading(true);
         try {
-            const res = await changePass({password})
+            const token = new URLSearchParams(window.location.search).get("token");
+
+            const res = await changePass({ token, newPassword: password });
+
             if (res.ok) {
-                console.log("Password berhasil dirubah")
+                console.log("Password berhasil diubah")
+                toast.success("Password berhasil diubah!");
                 navigate("/Login")
             } else {
                 const data = await res.json(); // ubah ke json
@@ -47,6 +57,7 @@ function PasswordChange(){
             }
         } catch (err) {
             console.error("Error:", err);
+            toast.error("Terjadi kesalahan");
         } finally {
             setLoading(false);
         }
@@ -77,8 +88,18 @@ function PasswordChange(){
                         {errors.confirmPassword && ( <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>)}
                     </div>
 
-                    <button type="submit" disabled={loading}  className={`flex justify-center items-center gap-2 bg-[#1B263B] text-white font-semibold py-2 rounded-full transition  ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#15224A]"}`} >
+                    {/* <button type="submit" disabled={loading}  className={`flex justify-center items-center gap-2 bg-[#1B263B] text-white font-semibold py-2 rounded-full transition  ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#15224A]"}`} >
                         {loading ? "Mengirim..." : "Kirim"}
+                    </button> */}
+
+                    <button type="submit" className="bg-[#1B263B] hover:bg-[#15224A] text-white font-semibold py-2 rounded-full transition flex justify-center items-center" disabled={loading}>
+                        {loading ? (
+                        <>
+                            <Loader2 className="animate-spin mr-2 h-4 w-4" /> Mengirim...
+                        </>
+                        ) : (
+                            "Kirim"
+                        )}
                     </button>
 
                 </form>
