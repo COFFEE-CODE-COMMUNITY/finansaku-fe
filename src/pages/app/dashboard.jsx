@@ -3,8 +3,8 @@ import Calendar from 'react-calendar'
 import "react-calendar/dist/Calendar.css" // default css bawaan
 import { useReminders } from "../../hooks/useReminder";
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line, LabelList, ResponsiveContainer} from "recharts";
-import { dataDashboard } from '../../api/authApi';
-import { useNavigate } from 'react-router-dom';
+import { dataDashboard } from '../../api/authApi'
+// import { useNavigate } from 'react-router-dom'
 
 function Dashboard(){
     
@@ -13,7 +13,7 @@ function Dashboard(){
     const [dashboardData, setDashboardData] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     useEffect(() => {
         const fetchDataDashboard = async () => {
@@ -48,9 +48,9 @@ function Dashboard(){
     }
   }, [setReminders]);
 
-    if (!dashboardData) {
-        navigate('/default-dashbaord')
-    }
+    // if (!dashboardData) {
+    //     navigate('/default-dashbaord')
+    // }
 
     
     const colors = ["#8979FF", "#3CC3DF", "#FF928A", "#FFD166", "#06D6A0"]

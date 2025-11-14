@@ -151,20 +151,20 @@ function Register() {
                         <div className="w-full flex flex-col gap-2.5 p-4">
                             <div className="flex flex-col text-left">
                                 <label className=" font-semibold text-gray-800" htmlFor="userName">Username:</label>
-                                <input onChange={(e) => setFormData({ ...formData, username: e.target.value })} autoComplete='username' type="text" value={formData.username} placeholder="chenhao" className={`border ${ errors.userName ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
-                                {errors.username && (<p className="text-red-500 text-xs">{errors.username}</p>)}
+                                <input onChange={(e) => setFormData({ ...formData, username: e.target.value })} autoComplete='username' type="text" value={formData.username} placeholder="chenhao" className={`border ${!isGoogleLogin && errors.username ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
+                                { !isGoogleLogin && errors.username && (<p className="text-red-500 text-xs">{errors.username}</p>)}
                             </div>
 
                             <div className="flex flex-col text-left">
                                 <label className="font-semibold text-gray-800" htmlFor="name">Name:</label>
-                                <input onChange={(e) => setFormData({ ...formData, name: e.target.value })} autoComplete='name' type="text" value={formData.name} id="name" placeholder="Chen Hao" className={`border ${ errors.name ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
-                                {errors.name && (<p className="text-red-500 text-xs">{errors.name}</p>)}
+                                <input onChange={(e) => setFormData({ ...formData, name: e.target.value })} autoComplete='name' type="text" value={formData.name} id="name" placeholder="Chen Hao" className={`border ${!isGoogleLogin && errors.name ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
+                                {!isGoogleLogin && errors.name && (<p className="text-red-500 text-xs">{errors.name}</p>)}
                             </div>
 
                             <div className="flex flex-col text-left">
                                 <label className="font-semibold text-gray-800" htmlFor="userEmail">Email:</label>
-                                <input onChange={(e) => setFormData({ ...formData, email: e.target.value })} autoComplete='email' type="email" value={formData.email} id="userEmail" placeholder=" Nama@gmail.com" className={`border ${ errors.email ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
-                                {errors.email && (<p className="text-red-500 text-xs">{errors.email}</p>)}
+                                <input onChange={(e) => setFormData({ ...formData, email: e.target.value })} autoComplete='email' type="email" value={formData.email} id="userEmail" placeholder=" Nama@gmail.com" className={`border ${!isGoogleLogin && errors.email ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`}/>
+                                {!isGoogleLogin && errors.email && (<p className="text-red-500 text-xs">{errors.email}</p>)}
                             </div>
 
                             <div className="flex flex-col text-left relative">
@@ -173,12 +173,12 @@ function Register() {
                                 </div>
 
                                 <div className="relative flex items-center">
-                                    <input onChange={(e) => setFormData({ ...formData, password: e.target.value })} type={showPassword ? "text" : "password"} autoComplete='current-password' id="userPass" value={formData.password} placeholder="*********" className={`border ${ errors.password ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
+                                    <input onChange={(e) => setFormData({ ...formData, password: e.target.value })} type={showPassword ? "text" : "password"} autoComplete='current-password' id="userPass" value={formData.password} placeholder="*********" className={`border ${!isGoogleLogin && errors.password ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
                                     <button type="button"  onClick={() => setShowPassword(!showPassword)}  className="absolute right-4" >
                                         {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                                     </button>
                                 </div>
-                                {errors.password && (<p className="text-red-500 text-xs">{errors.password}</p>)}
+                                {!isGoogleLogin && errors.password && (<p className="text-red-500 text-xs">{errors.password}</p>)}
                             </div>
 
                         </div>
