@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import Background from '../../assets/bg-login.png'
 import LogoFinansaku from '../../assets/fix-Logo.svg'
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react"
 import { useNavigate} from 'react-router-dom'
 import {changePass} from '../../api/authApi'
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
+import { Loader2 } from "lucide-react"
 
 
 function PasswordChange(){
@@ -21,11 +22,11 @@ function PasswordChange(){
         const newErrors = {}
 
         if (!password) {
-            newErrors.password = "Password wajib diisi"
+            newErrors.password = "A password is required"
         }
 
         if (!confirmPassword) {
-            newErrors.confirmPassword = "Konfirmasi password wajib diisi";
+            newErrors.confirmPassword = "The password confirmation must be filled in.";
         }
 
         setErrors(newErrors);
@@ -49,15 +50,15 @@ function PasswordChange(){
 
             if (res.ok) {
                 console.log("Password berhasil diubah")
-                toast.success("Password berhasil diubah!");
-                navigate("/Login")
+                toast.success("Your password has been successfully changed.");
+                navigate("/login")
             } else {
                 const data = await res.json(); // ubah ke json
-                alert(data.message || "Gagal mengubah password") // kalo msg ada tampilin kalo ga ada tampilin sebelah kanan
+                alert(data.message || "Failed to change password") // kalo msg ada tampilin kalo ga ada tampilin sebelah kanan
             }
         } catch (err) {
             console.error("Error:", err);
-            toast.error("Terjadi kesalahan");
+            toast.error("An error occurred.");
         } finally {
             setLoading(false);
         }
@@ -67,7 +68,7 @@ function PasswordChange(){
         <div className="flex h-screen w-full text-white overflow-hidden">
             <div className="flex h-screen w-1/2 flex-col gap-8 justify-center items-center text-black bg-white">
                 <h1 className="font-bold text-5xl">Reset Password</h1>
-                <p className="text-xl text-center">Masukkan kata sandi baru untuk akun <br/> kamu. Pastikan mudah diingat dan aman.</p>
+                <p className="text-xl text-center">Enter a new password for your account. <br/> Make sure it is secure and easy to remember.</p>
             
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="relative">
@@ -95,7 +96,7 @@ function PasswordChange(){
                     <button type="submit" className="bg-[#1B263B] hover:bg-[#15224A] text-white font-semibold py-2 rounded-full transition flex justify-center items-center" disabled={loading}>
                         {loading ? (
                         <>
-                            <Loader2 className="animate-spin mr-2 h-4 w-4" /> Mengirim...
+                            <Loader2 className="animate-spin mr-2 h-4 w-4" /> Mengirim
                         </>
                         ) : (
                             "Kirim"
