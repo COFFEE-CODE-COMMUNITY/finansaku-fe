@@ -87,7 +87,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <div className="mt-8 flex w-full justify-end items-end">
-                <button onClick={handleBack} className='bg-[#778DA9] w-[100px] text-center p-2.5 rounded-xl border-white border hover:bg-[#4C5E73]'>Daftar</button>
+                <button onClick={handleBack} className='bg-[#778DA9] transition transform active:scale-95 active:shadow-lg w-fit text-center p-2.5 rounded-xl hover:bg-[#4C5E73]'>Continue Signup</button>
             </div>
         </div>
     </div>
