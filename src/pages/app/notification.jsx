@@ -12,16 +12,16 @@ export default function NotificationsDisplay() {
         <div className="mt-6 space-y-3" aria-label="Daftar notifikasi">
         {items.map((n) => (
             <div key={n.id} className="rounded-xl border border-white bg-white/5 px-4 py-3">
-            <div className="flex items-center gap-3">
-                <AvatarPlaceholder />
-                <div className="flex-1">
-                <p className="text-xs leading-none text-white/70">{n.sender}</p>
-                <p className="mt-1 text-sm md:text-base">{n.message}</p>
+                <div className="flex items-center gap-3">
+                    <AvatarPlaceholder />
+                    <div className="flex-1">
+                        <p className="text-xs leading-none text-white/70">{n.sender}</p>
+                        <p className="mt-1 text-sm md:text-base">{n.message}</p>
+                    </div>
+                    <div className="ml-3 text-[11px] text-white/60">
+                        {n.dateLabel}
+                    </div>
                 </div>
-                <div className="ml-3 text-[11px] text-white/60">
-                {n.dateLabel}
-                </div>
-            </div>
             </div>
         ))}
         </div>
