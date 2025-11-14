@@ -31,7 +31,6 @@
   import ChangeEmail from './components/changeEmail.jsx'
   import DefDashboard from './components/defDashboard.jsx'
 
-
   createRoot(document.getElementById('root')).render(
     <UserProvider>
     <ReminderProvider>
