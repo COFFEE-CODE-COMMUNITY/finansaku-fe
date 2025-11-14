@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { UserContext } from "./userContext.jsx";
-import { verify, logout } from "../api/authApi"
+import { verify, logout } from "../api/authApi.js"
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -30,7 +30,8 @@ export const UserProvider = ({ children }) => {
 
         if (res.ok) {
           const data = await res.json()
-          setUser(data);
+          console.log(data)
+          setUser(data.data);
         } else {
           setUser(null); // token tidak valid
         }
@@ -57,63 +58,4 @@ export const UserProvider = ({ children }) => {
 
 Risiko: cookie tetap ada, jadi user masih bisa diakses backend. Ini tidak aman, karena token masih valid.
 */
-
-/*
-
-untuk logout
-
-import { useUser } from "../hooks/useUser";
-
-function Navbar() {
-  const {clearUser } = useUser();
-
-  const handleLogout = async () => {
-    await clearUser(); // panggil logout
-    // optional: redirect ke login
-    window.location.href = "/login";
-  };
-
-  return (
-    <nav>
-      <span>Welcome, {user.name}</span>
-      <button onClick={handleLogout}>Logout</button>
-    </nav>
-  );
-}
-
-
-*/
-
-
-
-// NON VERIFY AUTH
-// import React, { useState, useEffect } from "react";
-// import { UserContext } from "./userContext.jsx";
-
-// export const UserProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-
-//   const saveUser = (userData) => {
-//     setUser(userData);
-//     localStorage.setItem("user", JSON.stringify(userData));
-//   };
-
-//   const clearUser = () => {
-//     setUser(null);
-//     localStorage.removeItem("user");
-//   };
-
-//   useEffect(() => {
-//     const storedUser = localStorage.getItem("user");
-//     if (storedUser) {
-//       setUser(JSON.parse(storedUser));
-//     }
-//   }, []);
-
-//   return (
-//     <UserContext.Provider value={{ user, saveUser, clearUser }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
 

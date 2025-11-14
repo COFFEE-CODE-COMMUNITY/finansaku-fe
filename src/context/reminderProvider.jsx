@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { ReminderContext } from "./reminderContext";
+import React from "react"
+import { useState, useEffect } from "react"
+import { ReminderContext } from "./reminderContext"
+import { useUser } from "../hooks/useUser"
 
-export const ReminderProvider = ({ children }) => {
-  const [reminders, setReminders] = useState(() => {
-    // 🔹 Ambil data dari localStorage saat pertama kali load
-    const saved = localStorage.getItem("reminders");
-    return saved ? JSON.parse(saved) : [];
-  });
+export const ReminderProvider = ({children}) => {
+    const {user} = useUser()
+    const userId = user?.email
 
-  // 🔹 Simpan setiap kali reminders berubah
-  useEffect(() => {
-    localStorage.setItem("reminders", JSON.stringify(reminders));
-  }, [reminders]);
+    const [reminders, setReminders] = useState(() => {
+        const saved = localStorage.getItem(`reminders_${userId}`);
+        return saved ? JSON.parse(saved) : [];
+    })
 
-  // 🔹 Tambah reminder baru
-  const addReminder = (reminder) => {
-    setReminders((prev) => [...prev, reminder]);
-  };
+    // Simpan ke localStorage tiap kali reminders berubah
+    useEffect(() => {
+        if (userId) {
+          localStorage.setItem(`reminders_${userId}`, JSON.stringify(reminders));
+        }
+    }, [reminders, userId]);
+    
+    const addReminder = (reminder) => {
+        setReminders((prev) => [...prev, reminder]);
+    };
 
-  // 🔹 Hapus semua reminder
-  const clearReminders = () => setReminders([]);
+    const clearReminders = () => setReminders([]);
 
-  return (
-    <ReminderContext.Provider
-      value={{ reminders, addReminder, clearReminders, setReminders }}
-    >
-      {children}
-    </ReminderContext.Provider>
-  );
-};
+     return (
+        <ReminderContext.Provider value={{ reminders, addReminder, clearReminders, setReminders }}>
+          {children}
+        </ReminderContext.Provider>
+      );
+}

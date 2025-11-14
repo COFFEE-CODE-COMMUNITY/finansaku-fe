@@ -8,7 +8,7 @@ function ArticlePage() {
             <div className="flex flex-col text-white gap-8 mt-30">
                 <h1 className="text-5xl font-bold">Mulai Pelajari <br/> Keuangan Lebih Dalam</h1>
                 <p className="text-xl"> Finansaku menyediakan berbagai artikel menarik seputar <br/> pengelolaan keuangan, pembuatan anggaran, hingga <br/> tips menabung. Yuk, tingkatkan literasi finansialmu!</p>
-                <div className='bg-[#3A86FF] w-fit rounded-2xl border border-white py-2 px-4 mt-6 text-center font-bold'>
+                <div className='bg-[#3A86FF] hover:bg-[#226ee7] w-fit rounded-2xl border border-white py-2 px-4 mt-6 text-center font-bold'>
                     <NavLink to={"/Article"}>Baca Artikel Sekarang</NavLink>
                 </div>
             </div>

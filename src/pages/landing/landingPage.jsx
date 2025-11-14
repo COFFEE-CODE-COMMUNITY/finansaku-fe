@@ -21,7 +21,7 @@ function LandingPage(){
                     <div className='flex flex-col text-left w-auto gap-4'>
                         <h1 className='text-6xl font-bold mb-2.5'>Kelola uangmu <br></br> hidup lebih <br></br> terencana </h1>
                         <p>Dengan finansaku, budgeting jadi cepat dan <br /> praktis. Atur uangmu agar setiap rupiah digunakan <br />dengan bijak.</p>
-                        <div className='bg-[#3A86FF] rounded-2xl border border-white py-2 px-4 mt-6 w-45 text-center'>
+                        <div className='bg-[#3A86FF] hover:bg-[#226ee7] rounded-2xl border border-white py-2 px-4 mt-6 w-45 text-center'>
                             <NavLink to='/login' className='font-bold'>Atur finansialmu</NavLink>
                         </div>
                     
