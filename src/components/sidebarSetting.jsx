@@ -1,5 +1,4 @@
 import React from 'react'
-import FinansakuLogo from '../assets/finanSaku-Logo.svg'
 import {User, Info} from 'react-feather'
 import {NavLink} from 'react-router-dom'
 import ImagePerson from '../assets/person-img.svg'
