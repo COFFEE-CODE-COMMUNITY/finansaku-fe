@@ -2,7 +2,7 @@ import React from "react";
 import { useUser } from "../../hooks/useUser"
 import Image from '../../assets/person-img.svg'
 import {X} from "lucide-react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 function Setting(){
     const {user, loading} = useUser()

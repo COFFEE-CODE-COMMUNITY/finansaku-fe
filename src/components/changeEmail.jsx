@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {changeEmailSetting} from '../api/authApi'
 import toast from "react-hot-toast";
 
+
 function ChangeEmailSetting() {
     const [newEmail, setNewEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +13,7 @@ function ChangeEmailSetting() {
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate()
+
 
     const handleSubmit = () => {
         if (!newEmail || !password) {
@@ -88,7 +90,7 @@ function ChangeEmailSetting() {
                 <div className="flex flex-col text-left gap-2.5 relative">
                     <label className="font-semibold text-white" htmlFor="email">Email Baru : </label>
                     <div className="relative w-[900px]">
-                        <input id="email" type="email"  value={newEmail} onChange={(e) => setNewEmail(e.target.value)}  placeholder="yourEmail@gmail.com" className="rounded-md border border-white px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                        <input id="email" type="email"  value={newEmail} onChange={(e) => setNewEmail(e.target.value)}  placeholder="yourNewEmail@gmail.com" className="rounded-md border border-white px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
                         {errors.newEmail && (<p className="text-red-500 text-sm">{errors.newEmail}</p>)}
                     </div>
                 </div>

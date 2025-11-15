@@ -56,7 +56,7 @@ function Dashboard(){
     const colors = ["#8979FF", "#3CC3DF", "#FF928A", "#FFD166", "#06D6A0"]
 
     const data = dashboardData?.data?.monthlyCategories || []
-    // const dataPendapatan = dashboardData?.data?.summary?.totalBalance
+    const dataPendapatan = dashboardData?.data?.summary?.currentMonthlyIncome
 
     const bar = data.map((saku) => ({ 
         kategoriBar : saku.category,
@@ -133,7 +133,7 @@ function Dashboard(){
     return(
         <div className="flex flex-col text-white w-full overflow-hidden">
             {/* <h2 className=" text-start text-xl">Lihat gambaran keuanganmu di sini. Mulai dari alokasi tiap kategori hingga notes dalam kalender.</h2> */}
-            <p className='text-xl'>Pendapatanmu bulan: Rp.</p>
+            <p className='text-xl'>Pendapatanmu bulan ini: Rp. {dataPendapatan.toLocaleString('id-ID')}</p>
             <div className='grid grid-cols-3 grid-rows-2 mt-2.5 justify-center gap-x-2.5 gap-y-0 h-full'>
                 
                 {/* Bar */}

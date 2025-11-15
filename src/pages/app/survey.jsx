@@ -150,8 +150,8 @@ function Survey() {
                     
                     <div className="flex gap-4 mt-4">
                         {/* Confirm*/}
-                        <button onClick={handleConfirm} className="bg-[#487BEA] text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition" > Ya </button>
-                        <button onClick={handleCancel} className="bg-red-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 transition"> Tidak </button>
+                        <button onClick={handleConfirm} className="bg-[#487BEA] text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition transform active:scale-95 active:shadow-lg" > Ya </button>
+                        <button onClick={handleCancel} className="bg-red-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 transition transform active:scale-95 active:shadow-lg"> Tidak </button>
                     </div>
                 </div>
             </div>
