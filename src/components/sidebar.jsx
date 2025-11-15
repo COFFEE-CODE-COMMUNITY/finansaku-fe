@@ -1,5 +1,5 @@
 import React from 'react'
-import FinansakuLogo from '../assets/finanSaku-Logo.svg'
+import FinansakuLogo from '../assets/finanSaku-logo.svg'
 import {PieChart, Clipboard, Calendar, Clock, LogOut, Settings, Book, Bell} from 'react-feather'
 import {NavLink, useNavigate} from 'react-router-dom'
 import { useUser } from "../hooks/useUser";
