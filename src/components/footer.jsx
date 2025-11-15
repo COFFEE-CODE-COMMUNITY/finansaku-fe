@@ -1,6 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
-import Finansaku from "../assets/finansaku-logo.svg";
+import Finansaku from "../assets/finanSaku-logo.svg";
 
 function Footer() {
   return (
