@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import {SubmitSurvey} from '../../api/authApi'
 
 function Survey() {
-    const [showPopup, setShowPopup] = useState(false);
     // const navigate = useNavigate();
     const navigate = useNavigate()
     const [errors, setErrors] = useState({}); 
@@ -15,13 +14,18 @@ function Survey() {
 
     // const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         if(!validasiSurvey()){
             return
         } else {
-            setShowPopup(true); //show pop up when submit clicked
+            const pilihan = confirm("Apakah yakin ingin mengirim data survey ini?")
+            if(pilihan){
+                await handleConfirm(e)
+            } else {
+                handleCancel()
+            }
         }
     };
 
@@ -82,7 +86,6 @@ function Survey() {
 
 
     const handleCancel = () => {
-        setShowPopup(false);
         setDomisiliUser("")
         setSalaryUser("")
         setTanggunganUser("");
@@ -139,24 +142,6 @@ function Survey() {
         <div className="absolute top-[450px] right-38 flex justify-end items-end w-full">
             <button className="bg-[#487BEA] hover:bg-blue-600 border border-white text-white px-5 py-2 rounded-lg transition w-fit font-bold" onClick={handleSubmit}>Kirim</button>
         </div>
-
-        {showPopup && (
-        <div className="fixed inset-0 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg p-8 shadow-lg text-center w-[450px]">
-                <div className="flex flex-col items-center gap-4">
-                    <span className="text-4xl">⚠️</span>
-                    <h2 className="text-xl font-bold text-black"> Konfirmasi Pengisian Survey </h2>
-                    <p className="text-gray-700 text-sm">Apakah kamu yakin ingin mengirim survey ini? <br />Jawaban yang sudah dikirim tidak bisa diubah. </p>
-                    
-                    <div className="flex gap-4 mt-4">
-                        {/* Confirm*/}
-                        <button onClick={handleConfirm} className="bg-[#487BEA] text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition transform active:scale-95 active:shadow-lg" > Ya </button>
-                        <button onClick={handleCancel} className="bg-red-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 transition transform active:scale-95 active:shadow-lg"> Tidak </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-      )}
 
     </div>
   );
