@@ -9,18 +9,23 @@ function ChangeEmailSetting() {
     const [newEmail, setNewEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate()
 
-
-    const handleSubmit = () => {
+    const handleSubmit = async(e) => {
+        e.preventDefault()
         if (!newEmail || !password) {
             toast.error("Harap isi semua field!");
             return;
+        }else {
+            const pilihan = confirm("Yakin untuk mengubah email sebelumnya?")
+            if(pilihan){
+                await handleConfirm(e)
+            } else {
+                handleCancel()
+            }
         }
-        setShowPopup(true);
     };
 
     const validateForm = () => {
@@ -42,7 +47,6 @@ function ChangeEmailSetting() {
     }
 
     const handleConfirm = async (e) => {
-        setShowPopup(false);
         e.preventDefault();
         if (!validateForm()) return;
 
@@ -59,7 +63,8 @@ function ChangeEmailSetting() {
 
                 return;
             } else if (response.ok){
-                toast.success("Email Berhasil Diubah", {autoClose: 1500,})
+                //toast.success("Email Berhasil Diubah", {autoClose: 1500,}) 
+                navigate("/waitPage")
             }
         } catch(err){
             console.log("Error Change Email : ", err)
@@ -69,10 +74,15 @@ function ChangeEmailSetting() {
 
     };
 
+    const handleCancel = () => {
+        setNewEmail("")
+        setPassword("")
+    };
+
     const handleX = (e) => {
         e.preventDefault()
         
-        navigate('/dashboard')
+        navigate('/accountINfo')
     }
 
     return (
@@ -112,19 +122,6 @@ function ChangeEmailSetting() {
                 </div>
 
             </form>
-
-            {showPopup && (
-                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-                    <div className="bg-white text-black rounded-lg p-6 max-w-md shadow-lg text-center">
-                        <h3 className="text-lg font-semibold mb-2">⚠️ Konfirmasi Ganti Email</h3>
-                        <p className="text-sm text-gray-600 mb-6">Pastikan email baru sudah benar sebelum menyimpan. Perubahan ini akan digunakan untuk login akunmu.</p>
-                        <div className="flex justify-center items-center gap-3">
-                            <button onClick={handleConfirm} type="button" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Konfirmasi</button>
-                            <button onClick={() => setShowPopup(false)} className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">Batal</button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

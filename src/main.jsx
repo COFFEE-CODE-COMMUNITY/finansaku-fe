@@ -57,7 +57,7 @@ createRoot(document.getElementById('root')).render(
                   <Route path="/calendar" element={<Calendar />} />
                   <Route path="/history" element={<History />} />
                   <Route path="/notification" element={<Notification />} />
-                  <Route path="/default-dashbaord" element={<DefDashboard />} />  
+                  <Route path="/default-dashboard" element={<DefDashboard />} />  
                 </Route>
 
                 <Route element={<SettingLayout />}>

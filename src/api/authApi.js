@@ -66,7 +66,7 @@ export const verify = async () => {
 };
 
 
-//Logout?
+//Logout
 export const logout = async () => {
     return fetch(`${config.BASE_URL}/auth/logout`, {
         method : 'POST',

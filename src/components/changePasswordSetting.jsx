@@ -44,20 +44,12 @@ function ChangePass() {
 
         setLoading(true);
         try {
-        const response = await changePassSetting({
-            currentPass: oldPass,
-            newPass: newPass,
-        });
+        const response = await changePassSetting({ currentPass: oldPass, newPass: newPass,});
         const body = await response.json();
 
         if (!response.ok) {
-            setErrors((prev) => ({
-            ...prev,
-            oldPass: body.message || "Terjadi kesalahan",
-            }));
-            toast.error(body.message || "Password lama salah", {
-            position: "top-center",
-            });
+            setErrors((prev) => ({ ...prev, oldPass: body.message || "Terjadi kesalahan", }));
+            toast.error(body.message || "Password lama salah", {position: "top-center",});
             return;
         }
 
