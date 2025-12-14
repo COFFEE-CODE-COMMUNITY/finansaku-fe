@@ -1,37 +1,39 @@
-import React, { useState } from "react";
-import { Eye, EyeOff, X } from "lucide-react";
-import { changePassSetting } from "../api/authApi";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react"
+import { Eye, EyeOff, X } from "lucide-react"
+import { changePassSetting } from "../api/authApi"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
+import Popup from "../components/toast"
 
 function ChangePass() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [showNewPassword, setShowNewPassword] = useState(false);
-    const [oldPass, setOldPass] = useState("");
-    const [newPass, setNewPass] = useState("");
-    const [confirmPass, setConfirmPass] = useState("");
-    const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [showNewPassword, setShowNewPassword] = useState(false)
+    const [oldPass, setOldPass] = useState("")
+    const [newPass, setNewPass] = useState("")
+    const [confirmPass, setConfirmPass] = useState("")
+    const [errors, setErrors] = useState({})
+    const [loading, setLoading] = useState(false)
+    const [showPopup, setShowPopup] = useState(false)
 
     const navigate = useNavigate()
 
     const validateForm = () => {
-        const newErrors = {};
+        const newErrors = {}
         if (!oldPass) {
-            newErrors.oldPass = "Password lama wajib diisi";
+            newErrors.oldPass = "Password lama wajib diisi"
         }
 
         if (!newPass){
-            newErrors.newPass = "Password baru wajib diisi";
+            newErrors.newPass = "Password baru wajib diisi"
         }
 
         if (newPass && newPass.length < 8){
-             newErrors.newPass = "Password minimal 8 karakter";
+             newErrors.newPass = "Password minimal 8 karakter"
         }
 
         if (confirmPass !== newPass){
-            newErrors.confirmPass = "Konfirmasi password salah";
+            newErrors.confirmPass = "Konfirmasi password salah"
         }
 
         setErrors(newErrors);
@@ -41,29 +43,40 @@ function ChangePass() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
+        setShowPopup(true)
+    };
+
+
+    const handleConfirm = async () => {
 
         setLoading(true);
         try {
-        const response = await changePassSetting({ currentPass: oldPass, newPass: newPass,});
-        const body = await response.json();
+            const response = await changePassSetting({ currentPassword: oldPass, newPassword: newPass})
+            const body = await response.json()
 
-        if (!response.ok) {
-            setErrors((prev) => ({ ...prev, oldPass: body.message || "Terjadi kesalahan", }));
-            toast.error(body.message || "Password lama salah", {position: "top-center",});
-            return;
-        }
+            if (!response.ok) {
+                toast.error(body.message || "Password lama salah", {position: "top-center",})
+                return
+            }
 
-        toast.success("Password berhasil diubah!");
-            setOldPass("");
-            setNewPass("");
-            setConfirmPass("");
-            setErrors({});
+            toast.success("Password berhasil diubah!")
+                setOldPass("")
+                setNewPass("")
+                setConfirmPass("")
+                setErrors({})
         } catch (err) {
             console.error(err);
-            toast.error("Terjadi kesalahan server", { position: "top-center" });
+            toast.error("Terjadi kesalahan server", { position: "top-center" })
         } finally {
-            setLoading(false);
+            setLoading(false)
+            setShowPopup(false)
         }
+    };
+
+    const handleCancel = () => {
+        setOldPass("")
+        setNewPass("")
+        setConfirmPass("")
     };
 
     const handleX = (e) => {
@@ -91,7 +104,7 @@ function ChangePass() {
                     <div className="relative w-[900px]">
                         <input id="oldPass" type={showPassword ? "text" : "password"} value={oldPass} onChange={(e) => setOldPass(e.target.value)} placeholder="********" autoComplete="current-password" className="rounded-md border border-white px-4 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
-                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                         </button>
                     </div>
                     {errors.oldPass && <p className="text-red-500 text-sm">{errors.oldPass}</p>}
@@ -101,9 +114,9 @@ function ChangePass() {
                 <div className="flex flex-col text-left gap-2.5 relative">
                     <label className="font-semibold text-white" htmlFor="newPass"> Password baru :</label>
                     <div className="relative w-[900px]">
-                        <input id="newPass" type={showPassword ? "text" : "password"} value={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder="********" autoComplete="new-password" className="rounded-md border border-white px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
-                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white">
-                            {showConfirmPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+                        <input id="newPass" type={showNewPassword ? "text" : "password"} value={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder="********" autoComplete="new-password" className="rounded-md border border-white px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                        <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white">
+                            {showNewPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                         </button>
                     </div>
                     {errors.newPass && <p className="text-red-500 text-sm">{errors.newPass}</p>}
@@ -112,9 +125,9 @@ function ChangePass() {
                 <div className="flex flex-col text-left gap-2.5 relative">
                     <label   label className="font-semibold text-white" htmlFor="confirmPass">Konfirmasi password baru :</label>
                     <div className="relative w-[900px]">
-                        <input id="confirmPass" type={showPassword ? "text" : "password"} value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} placeholder="********" autoComplete="new-password" className="rounded-md border border-white px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
-                        <button type="button" onClick={() => setShowNewPassword(!showNewPassword)} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white">
-                            {showNewPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+                        <input id="confirmPass" type={showConfirmPassword ? "text" : "password"} value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} placeholder="********" autoComplete="new-password" className="rounded-md border border-white px-4 py-2 w-full pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                        <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white">
+                            {showConfirmPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                         </button>
                     </div>
                     {errors.confirmPass && <p className="text-red-500 text-sm">{errors.confirmPass}</p>}
@@ -126,6 +139,10 @@ function ChangePass() {
                 </div>
             </form>
         </div>
+
+        {showPopup && (
+            <Popup title="Konfirmasi Ganti Email" pesan="Pastikan email baru sudah benar sebelum menyimpan. Perubahan ini akan digunakan untuk login akunmu" confirm={handleConfirm} cancel={handleCancel}/>
+        )}
     </div>
   );
 }

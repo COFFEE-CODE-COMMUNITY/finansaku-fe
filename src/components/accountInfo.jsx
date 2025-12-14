@@ -2,6 +2,7 @@
     import { ChevronRight} from "lucide-react"
     import { useNavigate } from 'react-router-dom'
     import { useUser } from "../hooks/useUser"
+    import {X} from "lucide-react"
 
     function AccountSettings() {
 
@@ -38,12 +39,21 @@
             navigate('/change-password')
         }
 
+        const handleX = (e) => {
+            e.preventDefault()
+        
+            navigate('/dashboard')
+        }
+
         return (
         <div className="flex flex-col w-full relative h-[500px] max-w-4xl p-12 border border-white text-white shadow-2xl rounded-xl mx-auto">
-        
+            <div className=" flex absolute w-full top-0 left-230">
+                <button onClick={handleX} className="text-gray-400 border border-white rounded-full hover:text-white transition-colors p-2"><X /></button>
+            </div>
             <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-white mb-6">Account Info</h2>
 
+                {/* email */}
                 <div onClick={handleEmailClicked} className="flex justify-between items-center py-4 cursor-pointer hover:bg-[#313647] transition-colors px-2 -mx-2 rounded">
                     <span className="text-lg text-white">Email</span>
                     <div className="flex items-center space-x-3">
@@ -54,6 +64,7 @@
             
                 <div className="border-t border-gray-700/50"></div>
 
+                {/* password */}
                 <div onClick={handleePasswordClicked} className="flex justify-between items-center py-4 cursor-pointer hover:bg-[#313647] transition-colors px-2 -mx-2 rounded">
                     <span className="text-lg text-white">Password</span>
                     <div className="flex items-center space-x-3">

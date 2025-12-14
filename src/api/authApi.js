@@ -101,7 +101,7 @@ export const SubmitSurvey = async ({cityName, salary, dependents}) => {
 
 
 // change pass 2
-export const changePassSetting = async({ currentPass, newPass }) =>{
+export const changePassSetting = async({ currentPassword, newPassword }) =>{
     return fetch(`${config.BASE_URL}/user/change-password`, { // sesuaikan URL
         method : 'PATCH',
         headers: {
@@ -109,7 +109,7 @@ export const changePassSetting = async({ currentPass, newPass }) =>{
             'Accept' : 'application/json',
         },
         credentials: "include",
-        body : JSON.stringify({ currentPass, newPass })
+        body : JSON.stringify({ currentPassword, newPassword })
     })
 }
 
@@ -136,13 +136,14 @@ export const dataHistory = async () => {
 };
 
 // Change email settingz
-export const changeEmailSetting = async ({email}) => {
+export const changeEmailSetting = async ({newEmail}) => {
     return fetch(`${config.BASE_URL}/user/change-email`, { 
         method : 'PATCH',
         headers:{
         'Accept': 'application/json',
+        'Content-Type': 'application/json',
         },
         credentials: 'include', 
-        body : JSON.stringify({ email })
+        body : JSON.stringify({ newEmail })
     });
 };

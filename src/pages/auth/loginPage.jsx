@@ -89,7 +89,7 @@ function Login() {
                 const msg = body?.error || body?.message || "Incorrect password or email address";
                 setErrors((prev) => ({ ...prev, general: msg }));
 
-                toast.error(msg, {position: "top-center",  autoClose: 3000,  theme: "colored",});
+                //toast.error(msg, {position: "top-center",  autoClose: 3000,  theme: "colored",});
 
                 return;
             }
@@ -124,7 +124,7 @@ function Login() {
                         <label className="mb-2 font-semibold text-gray-800" htmlFor="userEmail" >Email </label>
                         <input autoComplete="email" type="email" id="userEmail" onChange={(e) => setEmail(e.target.value)} value={email} placeholder="Masukkan email"
                             className={`border ${!isGoogleLogin &&  errors.email ? "border-red-400" : "border-gray-400" } rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400`} />
-                        { !isGoogleLogin && errors.email && (<p className="text-red-500 text-sm">{errors.email}</p>)}
+                        {!isGoogleLogin && errors.email && (<p className="text-red-500 text-sm">{errors.email}</p>)} 
                     </div>
 
                     <div className="flex flex-col text-left relative">
@@ -140,6 +140,7 @@ function Login() {
                             </button>
                         </div>
                         { !isGoogleLogin && errors.password && ( <p className="text-red-500 text-sm">{errors.password}</p>)}
+                        {!isGoogleLogin && errors.general && (<p className="text-red-500 flex items-center justify-center mt-4 text-sm">{errors.general}</p>)}
                     </div>
 
                     <div className="flex items-center gap-2 mt-2.5 mb-2.5">
