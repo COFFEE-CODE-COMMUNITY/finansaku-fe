@@ -87,14 +87,14 @@ export const logout = async () => {
 //     })
 // };
 
-export const SubmitSurvey = async ({city, salary, householdSize}) => {
+export const SubmitSurvey = async ({cityName, salary, dependents}) => {
     return fetch(`${config.BASE_URL}/survey/submit`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify({city, salary, householdSize}),
+        body: JSON.stringify({cityName, salary, dependents}),
         credentials: "include"
     });
 };
