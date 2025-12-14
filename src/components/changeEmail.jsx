@@ -82,7 +82,7 @@ function ChangeEmailSetting() {
     const handleX = (e) => {
         e.preventDefault()
         
-        navigate('/accountINfo')
+        navigate('/account-information')
     }
 
     return (
@@ -117,8 +117,8 @@ function ChangeEmailSetting() {
                 </div>
 
                 <div className="flex w-[900px] justify-end gap-4 mt-10">
-                    <button type="button" onClick={handleSubmit} disabled={loading} className="w-[100px] py-3 bg-[#487BEA] border border-white text-white font-bold rounded-lg hover:bg-[#2e56ad] transition-colors disabled:opacity-50" >Simpan</button>
-                    <button type="button" className="w-[100px] py-3 bg-[#DC2626] border border-white text-white font-bold rounded-lg hover:bg-red-700 transition-colors" onClick={() => { setNewEmail(""); setPassword("")}}>Batal</button>
+                    <button type="button" onClick={handleSubmit} disabled={loading} className="w-[100px] py-3 bg-[#487BEA]  text-white font-bold rounded-lg hover:bg-[#2e56ad] transition-colors disabled:opacity-50" >Simpan</button>
+                    <button type="button" className="w-[100px] py-3 bg-[#DC2626] text-white font-bold rounded-lg hover:bg-red-700 transition-colors" onClick={() => { setNewEmail(""); setPassword("")}}>Batal</button>
                 </div>
 
             </form>

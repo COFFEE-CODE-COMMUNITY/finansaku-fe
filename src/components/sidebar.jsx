@@ -41,7 +41,7 @@ function Sidebar(){
 
                 {/* <button onClick={handleLogOut} className='bg-[#DC2626] flex border border-white justify-start items-center w-[200px] text-white p-3 text-center gap-4 rounded-2xl text-xl hover:bg-[#ba2121]'><LogOut/> Log Out</button> */}
 
-                <button  onClick={handleLogOut}  className='bg-[#DC2626] flex border border-white justify-center items-center w-[250px] text-white p-3 gap-4 rounded-2xl text-xl hover:bg-[#ba2121]'><LogOut/> Log Out</button>
+                <button  onClick={handleLogOut}  className='bg-[#DC2626] flex border border-white justify-center items-center w-[250px] text-white p-3 gap-4 rounded-2xl text-xl hover:bg-[#ba2121] transition transform active:scale-95 active:shadow-lg text-center'><LogOut/> Log Out</button>
 
             </div>
         </div>

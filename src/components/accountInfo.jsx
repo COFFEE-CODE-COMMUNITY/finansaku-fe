@@ -44,8 +44,7 @@
             <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-white mb-6">Account Info</h2>
 
-                {/* email */}
-                <div onClick={handleEmailClicked} className="flex justify-between items-center py-4 cursor-pointer hover:bg-[#1f253a] transition-colors px-2 -mx-2 rounded">
+                <div onClick={handleEmailClicked} className="flex justify-between items-center py-4 cursor-pointer hover:bg-[#313647] transition-colors px-2 -mx-2 rounded">
                     <span className="text-lg text-white">Email</span>
                     <div className="flex items-center space-x-3">
                         <span className="text-lg font-medium text-gray-400">{user.email}</span>
@@ -55,8 +54,7 @@
             
                 <div className="border-t border-gray-700/50"></div>
 
-                {/* password */}
-                <div onClick={handleePasswordClicked} className="flex justify-between items-center py-4 cursor-pointer hover:bg-[#1f253a] transition-colors px-2 -mx-2 rounded">
+                <div onClick={handleePasswordClicked} className="flex justify-between items-center py-4 cursor-pointer hover:bg-[#313647] transition-colors px-2 -mx-2 rounded">
                     <span className="text-lg text-white">Password</span>
                     <div className="flex items-center space-x-3">
                         <span className="text-lg font-medium text-gray-400">************</span>

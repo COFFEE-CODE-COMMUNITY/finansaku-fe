@@ -62,11 +62,7 @@ function CalendarPage() {
       );
       if (hasReminder) {
         const color =
-          hasReminder.kategori === "penting"
-            ? "bg-red-500"
-            : hasReminder.kategori === "sedang"
-            ? "bg-yellow-500"
-            : "bg-green-500";
+          hasReminder.kategori === "penting" ? "bg-red-500" : hasReminder.kategori === "sedang" ? "bg-yellow-500" : "bg-green-500";
         return <div className={`w-2 h-2 rounded-full mx-auto mt-1 ${color}`} />;
       }
     }
@@ -109,8 +105,8 @@ function CalendarPage() {
             </div>
 
             <div className="flex justify-end gap-2.5 pt-4">
-              <button type="submit" className="bg-blue-600 hover:bg-blue-800 text-white px-6 py-2 rounded-lg font-semibold transition"> Simpan</button>
-              <button type="button" onClick={handleReset} className="bg-red-500 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition">Batal</button>
+              <button type="submit" className="bg-blue-600 hover:bg-blue-800 text-white px-6 py-2 rounded-lg font-semiboldtransition transform active:scale-95 active:shadow-lg w-fit text-center p-2.5"> Simpan</button>
+              <button type="button" onClick={handleReset} className="bg-red-500 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition transform active:scale-95 active:shadow-lg w-fit text-center p-2.5">Batal</button>
             </div>
           </form>
         </div>

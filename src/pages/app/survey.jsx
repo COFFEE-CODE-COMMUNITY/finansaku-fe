@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import {SubmitSurvey} from '../../api/authApi'
+import PopUp from '../../components/toast'
+import toast from "react-hot-toast";
 
 function Survey() {
     // const navigate = useNavigate();
@@ -10,6 +12,7 @@ function Survey() {
     const [domisiliUser, setDomisiliUser] = useState(""); 
     const [salaryUser, setSalaryUser] = useState(""); 
     const [tanggunganUser, setTanggunganUser] = useState(""); 
+    const [showPopup, setShowPopup] = useState(false)
     // const [loading, setLoading] = useState(false);
 
     // const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -20,12 +23,8 @@ function Survey() {
         if(!validasiSurvey()){
             return
         } else {
-            const pilihan = confirm("Apakah yakin ingin mengirim data survey ini?")
-            if(pilihan){
-                await handleConfirm(e)
-            } else {
-                handleCancel()
-            }
+            setShowPopup(true)
+            
         }
     };
 
@@ -48,9 +47,8 @@ function Survey() {
 
     // }
 
-   const handleConfirm = async (e) => {
-    e.preventDefault();
-    
+   const handleConfirm = async () => {
+
     // convert string input ke tipe yang backend minta
     const salaryNum = Number(salaryUser.replace(/[^\d]/g, '')); // hapus tanda Rp atau titik ubah jg ke number
     const householdSize = parseInt(tanggunganUser, 10); // konversi menjadi int
@@ -72,14 +70,16 @@ function Survey() {
         console.log(body);
 
         if (response.ok) {
-        localStorage.setItem("hasilSurvey", "true")
-        navigate("/dashboard");
+            localStorage.setItem("hasilSurvey", "true")
+            navigate("/dashboard");
         } else {
-        setErrors({ server: body?.error || "Gagal mengirim survey" });
+            toast.error(body?.error || "Gagal mengirim survey");
         }
 
     } catch (err) {
         console.log(err);
+    } finally {
+        setShowPopup(false)
     }
     };
 
@@ -90,6 +90,7 @@ function Survey() {
         setSalaryUser("")
         setTanggunganUser("");
         setErrors({})
+        setShowPopup(false)
     };
 
     const validasiSurvey = () => {
@@ -142,6 +143,11 @@ function Survey() {
         <div className="absolute top-[450px] right-38 flex justify-end items-end w-full">
             <button className="bg-[#487BEA] hover:bg-blue-600 border border-white text-white px-5 py-2 rounded-lg transition w-fit font-bold" onClick={handleSubmit}>Kirim</button>
         </div>
+
+        {showPopup && (
+        <PopUp title="Konfirmasi Survey" pesan="Apakah kamu yakin ingin mengirim data survey ini?" confirm={handleConfirm} cancel={handleCancel}/>
+)}
+
 
     </div>
   );
