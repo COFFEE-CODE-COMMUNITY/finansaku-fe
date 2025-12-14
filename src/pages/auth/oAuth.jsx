@@ -6,8 +6,17 @@ function OAuthSuccess(){
     const navigate =useNavigate()
 
     useEffect(() => {
-        verify().then(() => navigate('/dashboard')).catch(() => navigate('/login'))
+        const validate = async () => {
+            const result = await verify()
+            if (result.ok){
+                console.log("Ini jalan bang")
+                navigate("/dashboard")
+            } else {
+                navigate("/login")
+            }
+        }
         console.log("Oauth")
+        validate()
     })
 
     return(
