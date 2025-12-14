@@ -50,8 +50,8 @@ function Survey() {
    const handleConfirm = async () => {
 
     // convert string input ke tipe yang backend minta
-    const salaryNum = Number(salaryUser.replace(/[^\d]/g, '')); // hapus tanda Rp atau titik ubah jg ke number
-    const householdSize = parseInt(tanggunganUser, 10); // konversi menjadi int
+    const salaryNum = Number(salaryUser.replace(/[^\d]/g, '')) // hapus tanda Rp atau titik ubah jg ke number
+    const householdSize = tanggunganUser === "" ? 0 : parseInt(tanggunganUser, 10)
 
     if (householdSize < 0) {
         setErrors({ tanggunganUser: "Tidak Valid" });
@@ -59,11 +59,11 @@ function Survey() {
     }   
 
     const payload = {
-        city: domisiliUser.trim(),
+        cityName: domisiliUser.trim(),
         salary: salaryNum,
-        householdSize: householdSize
+        dependents: householdSize
     };
-
+    
     try {
         const response = await SubmitSurvey(payload);
         const body = await response.json();
@@ -96,15 +96,20 @@ function Survey() {
     const validasiSurvey = () => {
         const newErrors = {}
 
+        const salaryNum = Number(salaryUser.replace(/[^\d]/g, ''))
+
+
         if (!domisiliUser){
             newErrors.domisiliUser = true
         }
 
         if (!salaryUser){
             newErrors.salaryUser = true
+        } else if (salaryNum <= 0 || isNaN(salaryNum)){
+            newErrors.salaryUser = "Gaji harus lebih dari 0"
         }
 
-        if(isNaN(tanggunganUser)){
+        if(tanggunganUser !== "" && isNaN(Number(tanggunganUser))){
             newErrors.tanggunganUser = "Harus berupa angka."
         } else if (Number(tanggunganUser) < 0){
             newErrors.tanggunganUser = "Tidak boleh negatif"
@@ -145,10 +150,8 @@ function Survey() {
         </div>
 
         {showPopup && (
-        <PopUp title="Konfirmasi Survey" pesan="Apakah kamu yakin ingin mengirim data survey ini?" confirm={handleConfirm} cancel={handleCancel}/>
-)}
-
-
+            <PopUp title="Konfirmasi Survey" pesan="Apakah kamu yakin ingin mengirim data survey ini?" confirm={handleConfirm} cancel={handleCancel}/>
+        )}
     </div>
   );
 }

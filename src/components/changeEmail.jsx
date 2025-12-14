@@ -3,7 +3,7 @@ import { Eye, EyeOff, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {changeEmailSetting} from '../api/authApi'
 import toast from "react-hot-toast";
-
+import Popup from "../components/toast"
 
 function ChangeEmailSetting() {
     const [newEmail, setNewEmail] = useState("");
@@ -12,6 +12,7 @@ function ChangeEmailSetting() {
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate()
+    const [showPopup, setShowPopup] = useState(false)
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -19,12 +20,7 @@ function ChangeEmailSetting() {
             toast.error("Harap isi semua field!");
             return;
         }else {
-            const pilihan = confirm("Yakin untuk mengubah email sebelumnya?")
-            if(pilihan){
-                await handleConfirm(e)
-            } else {
-                handleCancel()
-            }
+            setShowPopup(true)
         }
     };
 
@@ -46,8 +42,7 @@ function ChangeEmailSetting() {
         return Object.keys(newErrors).length === 0;
     }
 
-    const handleConfirm = async (e) => {
-        e.preventDefault();
+    const handleConfirm = async () => {
         if (!validateForm()) return;
 
         setLoading(true);
@@ -70,6 +65,7 @@ function ChangeEmailSetting() {
             console.log("Error Change Email : ", err)
         } finally{
             setLoading(false)
+            setShowPopup(false)
         } ; 
 
     };
@@ -120,6 +116,10 @@ function ChangeEmailSetting() {
                     <button type="button" onClick={handleSubmit} disabled={loading} className="w-[100px] py-3 bg-[#487BEA]  text-white font-bold rounded-lg hover:bg-[#2e56ad] transition-colors disabled:opacity-50" >Simpan</button>
                     <button type="button" className="w-[100px] py-3 bg-[#DC2626] text-white font-bold rounded-lg hover:bg-red-700 transition-colors" onClick={() => { setNewEmail(""); setPassword("")}}>Batal</button>
                 </div>
+
+                {showPopup && (
+                    <Popup title="Konfirmasi Ganti Email" pesan="Pastikan email baru sudah benar sebelum menyimpan. Perubahan ini akan digunakan untuk login akunmu" confirm={handleConfirm} cancel={handleCancel}/>
+                )}
 
             </form>
         </div>
