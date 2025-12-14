@@ -7,6 +7,7 @@ function OAuthSuccess(){
 
     useEffect(() => {
         verify().then(() => navigate('/dashboard')).catch(() => navigate('/login'))
+        console.log("Oauth")
     })
 
     return(
