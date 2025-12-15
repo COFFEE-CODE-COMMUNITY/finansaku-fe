@@ -52,7 +52,7 @@ createRoot(document.getElementById('root')).render(
                         
 
                 <Route path="/oauth-success" element={<OauthSuccess/>} />
-                <Route path="confirm-email-change" element={<AccountI/>} />
+                <Route path="/confirm-email-change" element={<AccountI/>} />
 
                 <Route element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
                   <Route path="/dashboard" element={<DashboardSet />} />
