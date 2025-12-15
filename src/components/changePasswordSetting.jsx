@@ -3,7 +3,7 @@ import { Eye, EyeOff, X } from "lucide-react"
 import { changePassSetting } from "../api/authApi"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
-import Popup from "../components/toast"
+import Popup from "../components/popUp"
 
 function ChangePass() {
     const [showPassword, setShowPassword] = useState(false)
