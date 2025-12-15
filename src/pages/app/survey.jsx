@@ -1,19 +1,21 @@
-import React, {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from "react"
+import { useNavigate } from "react-router-dom"
 // import { useNavigate } from "react-router-dom";
-import {SubmitSurvey} from '../../api/authApi'
-import PopUp from '../../components/toast'
+import {SubmitSurvey, dataKota} from '../../api/authApi'
+import PopUp from '../../components/popUp'
 import toast from "react-hot-toast";
+
 
 function Survey() {
     // const navigate = useNavigate();
     const navigate = useNavigate()
-    const [errors, setErrors] = useState({}); 
-    const [domisiliUser, setDomisiliUser] = useState(""); 
-    const [salaryUser, setSalaryUser] = useState(""); 
-    const [tanggunganUser, setTanggunganUser] = useState(""); 
+    const [errors, setErrors] = useState({})
+    const [domisiliUser, setDomisiliUser] = useState("")
+    const [salaryUser, setSalaryUser] = useState("")
+    const [tanggunganUser, setTanggunganUser] = useState("")
     const [showPopup, setShowPopup] = useState(false)
-    // const [loading, setLoading] = useState(false);
+    const [loadingkota, setLoadingKota] = useState(false)
+    const [listKota, setListKota] = useState([])
 
     // const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     
@@ -119,6 +121,24 @@ function Survey() {
         return Object.keys(newErrors).length === 0
     }
 
+
+    useEffect( () => {
+        const listKota = async () => {
+            try {
+                setLoadingKota(true)
+                const response = await dataKota()
+                const resultKota = await response.json()
+                console.log(resultKota)
+
+                setListKota(resultKota.data || [])
+                
+            }catch(err){
+                console.log(err)
+            }
+        }
+        listKota()
+    }, [])
+
     return (
     <div className="flex flex-col relative justify-center items-start text-white w-full h-full">
         <h2 className="absolute top-0 text-xl">Isi survey ini untuk mengetahui kondisi keuanganmu dan dapatkan insight pengelolaan finansial yang lebih baik.</h2>
@@ -127,7 +147,17 @@ function Survey() {
             <div className="flex mt-8 flex-col gap-4 top-[40px] absolute justify-center items-start">
                 <div className=" flex flex-col gap-4">
                     <label className="font-semibold text-xl" htmlFor="domisiliUser">1. Dari daerah mana kamu berasal?</label>
-                    <input type="text" onChange={(e) => (setDomisiliUser(e.target.value))} value={domisiliUser} placeholder="Kota Bandung" className={`${ errors.domisiliUser ? "border-red-400" : "border-gray-400"} border w-[1000px] rounded p-2.5 focus:outline-none focus:border-blue-500`}/>
+                    <select value={domisiliUser} onChange={(e) => setDomisiliUser(e.target.value)}  className={`${errors.domisiliUser ? "border-red-400" : "border-gray-400"} border w-[1000px] rounded p-2.5 focus:outline-none focus:border-blue-200`}>
+                        <option value="">
+                            {loadingkota ? "Pilih Kota/Kabupaten" : "Pilih Kota/Kabupaten"}
+                        </option>
+
+                        {listKota.map((kota) => (
+                            <option key={kota.id} value={kota.name} className="text-black bg-white/10">
+                                {kota.name}
+                            </option>
+                        ))}
+                    </select>
                     {errors.domisiliUser && (errors.domisiliUser)}
                 </div>
 
@@ -145,13 +175,13 @@ function Survey() {
             </div>
         </form>
 
-        <div className="absolute top-[450px] right-38 flex justify-end items-end w-full">
+        <div className="absolute top-[400px] right-38 flex justify-end items-end w-full">
             <button className="bg-[#487BEA] hover:bg-blue-600 border border-white text-white px-5 py-2 rounded-lg transition w-fit font-bold" onClick={handleSubmit}>Kirim</button>
         </div>
 
         {showPopup && (
             <PopUp title="Konfirmasi Survey" pesan="Apakah kamu yakin ingin mengirim data survey ini?" confirm={handleConfirm} cancel={handleCancel}/>
-        )}
+        )} 
     </div>
   );
 }

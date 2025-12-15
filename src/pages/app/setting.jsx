@@ -34,17 +34,17 @@ function Setting(){
     return(
         <>
         <div className="flex flex-col justify-center relative items-center">
-            <div className=" flex absolute top-0 right-24">
+            <div className=" flex absolute top-0 right-36 z-8">
                 <button onClick={handleX} className="text-gray-400 border border-white rounded-full hover:text-white transition-colors p-2"><X /></button>
             </div>
 
-            <div className="bg-blue-900 w-[800px] h-[150px] rounded-t-xl relative flex justify-start pl-12">
+            <div className="bg-blue-900 w-[750px] h-[120px] rounded-t-xl relative flex justify-start pl-12">
                 <img src={Image} alt="UserImage" className="h-32 w-fit rounded-full absolute -bottom-12 border-4 border-white shadow-md"/>
             </div>
 
-            <div className="bg-white flex p-4 flex-col rounded-b-xl w-[800px] h-[360px]">
+            <div className="bg-white flex p-4 flex-col rounded-b-xl w-[750px] h-[340px]">
                 <div className="mt-18">
-                    <div className="border p-2.5 m-2.5 rounded-lg border-black">
+                    <div className="border p-2.5 mr-2.5 ml-2.5 rounded-lg border-black">
                         <h3 className="pl-2 font-semibold">Username</h3>
                         <p className="pl-2.5">{user.username}</p>
                     </div>
@@ -61,7 +61,7 @@ function Setting(){
                 </div>
             </div>
 
-            <div className="w-[800px] flex justify-end mt-8">
+            <div className="w-[750px] flex justify-end mt-4">
                 <button className="bg-[#487BEA] text-white px-4 py-2 rounded-xl hover:bg-[#3b68c9]">Edit Profile</button>
             </div>
         </div>

@@ -76,6 +76,9 @@ function Login() {
                     localStorage.removeItem("savedEmail");
                 }
 
+                const userSaku = body.data.user.saku || []
+                const hasSakuData = userSaku.length> 0
+
                 // optionally store user data if you want to show it later
                 saveUser(body.data.user);
                 localStorage.setItem("hasilSurvey", "false")
@@ -84,7 +87,10 @@ function Login() {
                 // short delay for UX
                 toast.success("Login successful", {autoClose: 1500,})
                 await new Promise((res) => setTimeout(res, 2000));
-                navigate("/dashboard");
+                //navigate("/dashboard");
+                if (hasSakuData){
+                    navigate("/dashaboard")
+                }
             } else if (!response.ok) {
                 const msg = body?.error || body?.message || "Incorrect password or email address";
                 setErrors((prev) => ({ ...prev, general: msg }));

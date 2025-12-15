@@ -30,6 +30,7 @@ import { StrictMode } from 'react'
   // import CalendarSet from './pages/app/calendarSet.jsx'
   import ChangeEmail from './components/changeEmail.jsx'
   import DefDashboard from './components/defDashboard.jsx'
+  import AccountI from "./components/accountInfo.jsx"
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
@@ -51,6 +52,8 @@ createRoot(document.getElementById('root')).render(
                         
 
                 <Route path="/oauth-success" element={<OauthSuccess/>} />
+                <Route path="confirm-email-change" element={<AccountI/>} />
+
                 <Route element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
                   <Route path="/dashboard" element={<DashboardSet />} />
                   <Route path="/survey" element={<Survey />} />

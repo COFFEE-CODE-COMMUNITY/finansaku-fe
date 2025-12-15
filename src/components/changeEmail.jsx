@@ -3,7 +3,7 @@ import { Eye, EyeOff, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {changeEmailSetting} from '../api/authApi'
 import toast from "react-hot-toast";
-import Popup from "../components/toast"
+import Popup from "../components/popUp"
 
 function ChangeEmailSetting() {
     const [newEmail, setNewEmail] = useState("");
@@ -45,9 +45,13 @@ function ChangeEmailSetting() {
     const handleConfirm = async () => {
         if (!validateForm()) return;
 
+        console.log("hallo bangg")
+
         setLoading(true);
         try {
-            const response = await changeEmailSetting ({ newEmail });
+
+            console.log("SEND:", { newEmail, password });
+            const response = await changeEmailSetting ({ newEmail, password });
             const body = await response.json();
 
             if (!response.ok) {
@@ -73,6 +77,7 @@ function ChangeEmailSetting() {
     const handleCancel = () => {
         setNewEmail("")
         setPassword("")
+        setShowPopup(false)
     };
 
     const handleX = (e) => {
@@ -91,7 +96,7 @@ function ChangeEmailSetting() {
                 <button onClick={handleX} className="text-gray-400 border border-white rounded-full hover:text-white transition-colors p-2"> <X /></button>
             </header>
 
-            <form className="flex flex-col gap-8">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8">
             
                 <div className="flex flex-col text-left gap-2.5 relative">
                     <label className="font-semibold text-white" htmlFor="email">Email Baru : </label>
@@ -113,7 +118,7 @@ function ChangeEmailSetting() {
                 </div>
 
                 <div className="flex w-[900px] justify-end gap-4 mt-10">
-                    <button type="button" onClick={handleSubmit} disabled={loading} className="w-[100px] py-3 bg-[#487BEA]  text-white font-bold rounded-lg hover:bg-[#2e56ad] transition-colors disabled:opacity-50" >Simpan</button>
+                    <button type="submit" disabled={loading} className="w-[100px] py-3 bg-[#487BEA]  text-white font-bold rounded-lg hover:bg-[#2e56ad] transition-colors disabled:opacity-50" >Simpan</button>
                     <button type="button" className="w-[100px] py-3 bg-[#DC2626] text-white font-bold rounded-lg hover:bg-red-700 transition-colors" onClick={() => { setNewEmail(""); setPassword("")}}>Batal</button>
                 </div>
 

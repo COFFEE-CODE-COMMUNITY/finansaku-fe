@@ -62,8 +62,8 @@ export const verify = async () => {
         'Accept': 'application/json',
         },
         credentials: 'include', 
-    });
-};
+    })
+}
 
 
 //Logout
@@ -96,8 +96,8 @@ export const SubmitSurvey = async ({cityName, salary, dependents}) => {
         },
         body: JSON.stringify({cityName, salary, dependents}),
         credentials: "include"
-    });
-};
+    })
+}
 
 
 // change pass 2
@@ -121,8 +121,8 @@ export const dataDashboard = async () => {
         'Accept': 'application/json',
         },
         credentials: 'include', 
-    });
-};
+    })
+}
 
 
 // Data History
@@ -132,11 +132,11 @@ export const dataHistory = async () => {
         'Accept': 'application/json',
         },
         credentials: 'include', 
-    });
-};
+    })
+}
 
 // Change email settingz
-export const changeEmailSetting = async ({newEmail}) => {
+export const changeEmailSetting = async ({newEmail, password}) => {
     return fetch(`${config.BASE_URL}/user/change-email`, { 
         method : 'PATCH',
         headers:{
@@ -144,6 +144,21 @@ export const changeEmailSetting = async ({newEmail}) => {
         'Content-Type': 'application/json',
         },
         credentials: 'include', 
-        body : JSON.stringify({ newEmail })
-    });
-};
+        body : JSON.stringify({ newEmail, password })
+    })
+}
+
+
+// get data kota
+
+export const dataKota = async () => {
+    return fetch(`${config.BASE_URL}/cities`, { // sesuaikan URL
+        method: 'GET',
+        headers: {
+        'Accept': 'application/json',
+        },
+        credentials: 'include', 
+    })
+}
+
+

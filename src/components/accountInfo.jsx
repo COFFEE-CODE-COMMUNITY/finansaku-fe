@@ -46,8 +46,8 @@
         }
 
         return (
-        <div className="flex flex-col w-full relative h-[500px] max-w-4xl p-12 border border-white text-white shadow-2xl rounded-xl mx-auto">
-            <div className=" flex absolute w-full top-0 left-230">
+        <div className="flex flex-col w-[750px] relative h-[500px] max-w-4xl p-12 border border-white text-white shadow-2xl rounded-xl mx-auto">
+            <div className=" flex absolute translate-x-[60px] ml-8 top-0 right-0 z-10">
                 <button onClick={handleX} className="text-gray-400 border border-white rounded-full hover:text-white transition-colors p-2"><X /></button>
             </div>
             <div className="space-y-6">
