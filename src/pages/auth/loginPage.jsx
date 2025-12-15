@@ -81,16 +81,14 @@ function Login() {
 
                 // optionally store user data if you want to show it later
                 saveUser(body.data.user);
-                localStorage.setItem("hasilSurvey", "false")
+                localStorage.setItem("hasilSurvey", hasSakuData ? "true" : "false ")
 
 
                 // short delay for UX
                 toast.success("Login successful", {autoClose: 1500,})
                 await new Promise((res) => setTimeout(res, 2000));
-                //navigate("/dashboard");
-                if (hasSakuData){
-                    navigate("/dashaboard")
-                }
+                navigate("/dashboard");
+        
             } else if (!response.ok) {
                 const msg = body?.error || body?.message || "Incorrect password or email address";
                 setErrors((prev) => ({ ...prev, general: msg }));

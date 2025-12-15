@@ -101,7 +101,7 @@ function Survey() {
         const salaryNum = Number(salaryUser.replace(/[^\d]/g, ''))
 
 
-        if (!domisiliUser){
+        if (!domisiliUser.trim()){
             newErrors.domisiliUser = true
         }
 
@@ -173,11 +173,11 @@ function Survey() {
                     {errors.tanggunganUser && (errors.tanggunganUser)}
                 </div>
             </div>
+            <div className="absolute top-[400px] right-38 flex justify-end items-end w-full">
+                <button type="submit" className="bg-[#487BEA] hover:bg-blue-600 border border-white text-white px-5 py-2 rounded-lg transition w-fit font-bold">Kirim</button>
+            </div>
         </form>
 
-        <div className="absolute top-[400px] right-38 flex justify-end items-end w-full">
-            <button className="bg-[#487BEA] hover:bg-blue-600 border border-white text-white px-5 py-2 rounded-lg transition w-fit font-bold" onClick={handleSubmit}>Kirim</button>
-        </div>
 
         {showPopup && (
             <PopUp title="Konfirmasi Survey" pesan="Apakah kamu yakin ingin mengirim data survey ini?" confirm={handleConfirm} cancel={handleCancel}/>
