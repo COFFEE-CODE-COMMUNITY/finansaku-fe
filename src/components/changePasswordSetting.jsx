@@ -42,7 +42,11 @@ function ChangePass() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateForm()) return;
+        
+        const valid = validateForm()
+        console.log("Valid", valid)
+
+        if (!valid) return;
         setShowPopup(true)
     };
 

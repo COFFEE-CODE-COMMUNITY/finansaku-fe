@@ -13,7 +13,7 @@ function Popup({ title, pesan, cancel, confirm }){
                 <div className="mt-2 mb-4">
                     {pesan}
                 </div>
-                    <div className="flex items-center justify-left gap-2.5">
+                    <div className="flex items-left gap-2.5">
                         <button onClick={cancel} type="button" className="inline-flex items-center rounded-lg bg-[#DC2626] hover:bg-red-700 box-border text-white border border-transparent hover:bg-warning-strong focus:ring-4 focus:ring-warning-medium shadow-xs font-medium leading-5 rounded-base text-xs px-3 py-1.5 focus:outline-none">
                             Batal
                         </button>
